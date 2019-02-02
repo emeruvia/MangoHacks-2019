@@ -6,8 +6,16 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import com.apollographql.apollo.ApolloCall
+import com.apollographql.apollo.api.Response
+import com.apollographql.apollo.exception.ApolloException
+import com.apollographql.apollo.sample.TestListQuery
+import com.apollographql.apollo.sample.TestListQuery.Data
+import fgcu.mangohacks2019.utils.EightBaseApolloClient
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
 
@@ -18,14 +26,18 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     setContentView(R.layout.activity_home_page)
     setSupportActionBar(toolbar)
 
+    getPost()
+
     fab.setOnClickListener { view ->
       Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-          .setAction("Action", null).show()
+          .setAction("Action", null)
+          .show()
     }
 
     val toggle = ActionBarDrawerToggle(
         this, drawer_layout, toolbar, R.string.navigation_drawer_open,
-        R.string.navigation_drawer_close)
+        R.string.navigation_drawer_close
+    )
     drawer_layout.addDrawerListener(toggle)
     toggle.syncState()
 
@@ -75,5 +87,25 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
     drawer_layout.closeDrawer(GravityCompat.START)
     return true
+  }
+
+  private fun getPost() {
+    val eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
+    eightBaseApolloClient.query(
+        TestListQuery.builder().build()
+    )
+        .enqueue(object : ApolloCall.Callback<TestListQuery.Data>() {
+          override fun onResponse(response: Response<TestListQuery.Data>) {
+            Log.d("onResponse", response.data()!!.testsList().items().toString())
+            this@HomePageActivity.runOnUiThread {
+              Toast.makeText(applicationContext, "Response works", Toast.LENGTH_SHORT)
+                  .show()
+            }
+          }
+
+          override fun onFailure(e: ApolloException) {
+            Log.d("onFailure", "Trash")
+          }
+        })
   }
 }
