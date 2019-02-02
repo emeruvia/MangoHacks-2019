@@ -2,7 +2,6 @@ package fgcu.mangohacks2019
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -16,13 +15,12 @@ import android.widget.Toast
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
-import com.apollographql.apollo.sample.GetEventUsersQuery
-import com.apollographql.apollo.sample.GetEventUsersQuery.EventsList
-import com.apollographql.apollo.sample.TestListQuery
-import com.apollographql.apollo.sample.TestListQuery.Data
 import fgcu.mangohacks2019.utils.EightBaseApolloClient
-import android.widget.EditText
 import android.widget.TextView
+import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.sample.GetEventsQuery
+import com.apollographql.apollo.sample.PostCreateEventMutation
+import com.apollographql.apollo.sample.PostCreateEventMutation.Data
 import fgcu.mangohacks2019.adapters.RecyclerViewOnClick
 import fgcu.mangohacks2019.fragments.AttendEventFragment
 import fgcu.mangohacks2019.fragments.EditProfileFragment
@@ -32,15 +30,22 @@ import fgcu.mangohacks2019.fragments.SubscriptionsFragment
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
 
-class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, RecyclerViewOnClick {
+class HomePageActivity : AppCompatActivity(),
+    NavigationView.OnNavigationItemSelectedListener,
+    RecyclerViewOnClick {
+
+  private lateinit var eightBaseApolloClient: ApolloClient
+
   override fun deleteSelectedRow(obj: Any) {
     TODO(
-        "not implemented") //To change body of created functions use File | Settings | File Templates.
+        "not implemented"
+    ) //To change body of created functions use File | Settings | File Templates.
   }
 
   override fun rowSelected(obj: Any) {
     TODO(
-        "not implemented") //To change body of created functions use File | Settings | File Templates.
+        "not implemented"
+    ) //To change body of created functions use File | Settings | File Templates.
   }
 
   lateinit var fragment: Fragment
@@ -51,8 +56,11 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     setContentView(R.layout.activity_home_page)
     setSupportActionBar(toolbar)
     fragment = MyEventsFragment()
-    supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit();
+    supportFragmentManager.beginTransaction()
+        .replace(R.id.fragment, fragment, fragment.getTag())
+        .commit()
     supportActionBar?.setDisplayShowTitleEnabled(false)
+    eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
     titleTextView = findViewById(R.id.toolbar_title)
     titleTextView.text = "My Events"
 
@@ -63,6 +71,8 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
       Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
           .setAction("Action", null)
           .show()
+      // TODO add events
+      createEvent()
     }
 
     val toggle = ActionBarDrawerToggle(
@@ -100,27 +110,37 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     when (item.itemId) {
       R.id.nav_my_events -> {
         fragment = MyEventsFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment, fragment, fragment.getTag())
+            .commit()
         titleTextView.text = "My Events"
       }
       R.id.nav_near_events -> {
         fragment = NearEventFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment, fragment, fragment.getTag())
+            .commit()
 
       }
       R.id.nav_attend_events -> {
         fragment = AttendEventFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment, fragment, fragment.getTag())
+            .commit()
         titleTextView.text = "Events Attended"
       }
       R.id.nav_subscriptions -> {
         fragment = SubscriptionsFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment, fragment, fragment.getTag())
+            .commit()
         titleTextView.text = "Subscriptions"
       }
       R.id.nav_edit_profile -> {
         fragment = EditProfileFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment, fragment, fragment.getTag())
+            .commit()
         titleTextView.text = "Edit Profile"
       }
       R.id.nav_logout -> {
@@ -133,37 +153,59 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     return true
   }
 
-  private fun getPost() {
-    val eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
-    eightBaseApolloClient.query(
-        TestListQuery.builder().build()
+  private fun createEvent() {
+    eightBaseApolloClient.mutate(
+        PostCreateEventMutation.builder()
+            .title("post from app")
+            .address("1234 fort myers FL")
+            .description("This is a test to see if it works")
+            .price(1230.04).build()
     )
-        .enqueue(object : ApolloCall.Callback<TestListQuery.Data>() {
-          override fun onResponse(response: Response<TestListQuery.Data>) {
-            Log.d("onResponse", response.data()!!.testsList().items().toString())
-            this@HomePageActivity.runOnUiThread {
-              Toast.makeText(applicationContext, "Response works", Toast.LENGTH_SHORT)
-                  .show()
-            }
+        .enqueue(object : ApolloCall.Callback<PostCreateEventMutation.Data>() {
+          override fun onFailure(e: ApolloException) {
+            Log.d("onFailure", "Failed from post create event")
+            Log.d("onFailure", e.localizedMessage)
           }
 
-          override fun onFailure(e: ApolloException) {
-            Log.d("onFailure", "Trash")
+          override fun onResponse(response: Response<Data>) {
+            Log.d("onResponse", "Object created")
           }
+
         })
+
+  }
+
+  private fun getPost() {
+    eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
+//    eightBaseApolloClient.query(
+//        TestListQuery.builder().build()
+//    )
+//        .enqueue(object : ApolloCall.Callback<TestListQuery.Data>() {
+//          override fun onResponse(response: Response<TestListQuery.Data>) {
+//            Log.d("onResponse", response.data()!!.testsList().items().toString())
+//            this@HomePageActivity.runOnUiThread {
+//              Toast.makeText(applicationContext, "Response works", Toast.LENGTH_SHORT)
+//                  .show()
+//            }
+//          }
+//
+//          override fun onFailure(e: ApolloException) {
+//            Log.d("onFailure", "Trash")
+//          }
+//        })
     eightBaseApolloClient.query(
-        GetEventUsersQuery.builder().build()
+        GetEventsQuery.builder().build()
     )
-        .enqueue(object : ApolloCall.Callback<GetEventUsersQuery.Data>() {
+        .enqueue(object : ApolloCall.Callback<GetEventsQuery.Data>() {
           override fun onFailure(e: ApolloException) {
             Log.d("onFailure", "Trash coming from getevent user stuff")
+            Log.d("onFailure", e.message)
+            Log.d("onFailure", e.localizedMessage)
           }
 
-          override fun onResponse(response: Response<GetEventUsersQuery.Data>) {
+          override fun onResponse(response: Response<GetEventsQuery.Data>) {
             Log.d("onResponse", response.data()!!.eventsList().items()[0].toString())
-            Log.d("onResponse", response.data()!!.eventUsersList().items()[0].toString())
           }
-
         })
   }
 }

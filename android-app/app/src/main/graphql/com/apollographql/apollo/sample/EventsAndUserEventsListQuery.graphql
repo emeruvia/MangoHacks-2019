@@ -1,26 +1,13 @@
-query getEventUsers{
-  eventUsersList{
-    items{
-      id
-      name
-      email
-			password
-      image{
-        downloadUrl
-      }
-    }
-  }
+query getEvents{
   eventsList{
-    count
     items{
       id
+      titleOfEvent
       address
       description
-      date
       eventCoordinator{
-        id
         name
-        email
+				email
       }
     }
   }
