@@ -1,6 +1,7 @@
 package fgcu.mangohacks2019
 
 import android.os.Bundle
+import android.support.design.widget.AppBarLayout
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -9,12 +10,24 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import fgcu.mangohacks2019.adapters.RecyclerViewOnClick
 import fgcu.mangohacks2019.fragments.MyEventsFragment
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
 
-class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, RecyclerViewOnClick {
+  override fun deleteSelectedRow(obj: Any) {
+    TODO(
+        "not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun rowSelected(obj: Any) {
+    TODO(
+        "not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
   lateinit var fragment: Fragment
+  lateinit var appbar: AppBarLayout
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -22,6 +35,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     setSupportActionBar(toolbar)
     fragment = MyEventsFragment()
     supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit();
+    appbar = findViewById(R.id.appbar_layout)
 
     fab.setOnClickListener { view ->
       Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

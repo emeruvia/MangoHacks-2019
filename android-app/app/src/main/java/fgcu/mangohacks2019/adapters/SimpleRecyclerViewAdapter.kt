@@ -76,7 +76,7 @@ open abstract class MyBaseAdapter : RecyclerView.Adapter<MyBaseAdapter.MyViewHol
         binding.root) {
 
       fun bind(obj: Any) {
-        binding.setVariable(fgcu.mangohacks2019.BR._all, obj)
+        binding.setVariable(fgcu.mangohacks2019.BR.obj, obj)
         binding.executePendingBindings()
       }
     }
