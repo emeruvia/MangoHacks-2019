@@ -5,13 +5,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <android.support.v7.widget.RecyclerView
-      android:id="@+id/recycler_view"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:layout_constraintStart_toStartOf="parent"
+  <TextView android:text="hello world" android:layout_width="wrap_content"
+      android:layout_height="wrap_content" app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/recycler_view"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintEnd_toEndOf="parent">
-  </android.support.v7.widget.RecyclerView>
+      app:layout_constraintBottom_toTopOf="@+id/recycler_view" android:layout_marginBottom="32dp"/>
+
+
 
 </android.support.constraint.ConstraintLayout>

@@ -3,20 +3,25 @@ package fgcu.mangohacks2019
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import fgcu.mangohacks2019.fragments.MyEventsFragment
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
 
 class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+  lateinit var fragment: Fragment
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_home_page)
     setSupportActionBar(toolbar)
+    fragment = MyEventsFragment()
+    supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit();
 
     fab.setOnClickListener { view ->
       Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -41,15 +46,11 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    // Inflate the menu; this adds items to the action bar if it is present.
     menuInflater.inflate(R.menu.home_page, menu)
     return true
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
     when (item.itemId) {
       R.id.action_settings -> return true
       else -> return super.onOptionsItemSelected(item)
@@ -59,16 +60,22 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
   override fun onNavigationItemSelected(item: MenuItem): Boolean {
     // Handle navigation view item clicks here.
     when (item.itemId) {
-      R.id.nav_camera -> {
-        // Handle the camera action
-      }
-      R.id.nav_gallery -> {
+      R.id.nav_my_events -> {
 
       }
-      R.id.nav_slideshow -> {
+      R.id.nav_near_events -> {
 
       }
-      R.id.nav_manage -> {
+      R.id.nav_attend_events -> {
+
+      }
+      R.id.nav_subscriptions -> {
+
+      }
+      R.id.nav_edit_profile -> {
+
+      }
+      R.id.nav_logout -> {
 
       }
     }

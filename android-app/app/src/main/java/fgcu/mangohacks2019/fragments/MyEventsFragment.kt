@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import fgcu.mangohacks2019.R
 
 class MyEventsFragment : Fragment(){
 
@@ -17,7 +18,7 @@ class MyEventsFragment : Fragment(){
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    return super.onCreateView(inflater, container, savedInstanceState)
+    return  inflater.inflate(R.layout.fragment_my_event, container, false)
   }
 
 }
