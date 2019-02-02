@@ -1,0 +1,27 @@
+query getEventUsers{
+  eventUsersList{
+    items{
+      id
+      name
+      email
+			password
+      image{
+        downloadUrl
+      }
+    }
+  }
+  eventsList{
+    count
+    items{
+      id
+      address
+      description
+      date
+      eventCoordinator{
+        id
+        name
+        email
+      }
+    }
+  }
+}
