@@ -23,14 +23,9 @@ import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
 
 class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, RecyclerViewOnClick {
-  override fun deleteSelectedRow(obj: Any) {
-    TODO(
-        "not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
 
   override fun rowSelected(obj: Any) {
-    TODO(
-        "not implemented") //To change body of created functions use File | Settings | File Templates.
+
   }
 
   lateinit var fragment: Fragment
