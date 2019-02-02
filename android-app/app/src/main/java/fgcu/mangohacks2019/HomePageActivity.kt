@@ -15,6 +15,7 @@ import android.util.Log
 
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.api.Response
@@ -63,9 +64,8 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     getPost()
 
     fab.setOnClickListener { view ->
-      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-          .setAction("Action", null)
-          .show()
+      intent = Intent(this, CreateEventActivity::class.java)
+      startActivity(intent)
     }
 
     val toggle = ActionBarDrawerToggle(
@@ -168,5 +168,13 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
           }
 
         })
+  }
+
+  fun updateProfile(view: View){
+
+  }
+
+  fun showDialog(view: View){
+
   }
 }

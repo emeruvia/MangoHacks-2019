@@ -14,4 +14,21 @@
   <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
   <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+  <style name="CustomizePageEditText">
+    <item name="android:layout_width">300dp</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginTop">24dp</item>
+  </style>
+
+  <style name="LoginSignUpButton" parent="Widget.AppCompat.Button.Borderless">
+    <item name="android:layout_marginTop">16dp</item>
+    <item name="android:layout_marginStart">16dp</item>
+    <item name="android:layout_marginEnd">16dp</item>
+    <item name="android:layout_width">200dp</item>
+    <item name="android:layout_height">50dp</item>
+    <item name="android:background">@drawable/round_button</item>
+    <item name="android:textColor">#fff</item>
+
+  </style>
+
 </resources>

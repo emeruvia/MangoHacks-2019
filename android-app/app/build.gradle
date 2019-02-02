@@ -43,7 +43,7 @@ dependencies {
   apply plugin: 'com.apollographql.android'
 
   // OAuth
-//  implementation 'com.auth0.android:auth0:1.15.1'
+  //  implementation 'com.auth0.android:auth0:1.15.1'
 
   testImplementation 'junit:junit:4.12'
   androidTestImplementation 'com.android.support.test:runner:1.0.2'

@@ -2,9 +2,12 @@ package fgcu.mangohacks2019.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import fgcu.mangohacks2019.R
+import fgcu.mangohacks2019.models.Event
 
 class EditProfileFragment : Fragment(){
 
@@ -17,6 +20,8 @@ class EditProfileFragment : Fragment(){
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    return super.onCreateView(inflater, container, savedInstanceState)
+    return inflater.inflate(R.layout.fragment_edit_profile, container, false)
   }
+
+
 }
