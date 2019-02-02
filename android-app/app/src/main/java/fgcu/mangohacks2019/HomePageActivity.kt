@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
@@ -27,6 +26,7 @@ import fgcu.mangohacks2019.fragments.EditProfileFragment
 import fgcu.mangohacks2019.fragments.MyEventsFragment
 import fgcu.mangohacks2019.fragments.NearEventFragment
 import fgcu.mangohacks2019.fragments.SubscriptionsFragment
+import fgcu.mangohacks2019.models.Event
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
 
@@ -36,16 +36,12 @@ class HomePageActivity : AppCompatActivity(),
 
   private lateinit var eightBaseApolloClient: ApolloClient
 
-  override fun deleteSelectedRow(obj: Any) {
-    TODO(
-        "not implemented"
-    ) //To change body of created functions use File | Settings | File Templates.
-  }
-
   override fun rowSelected(obj: Any) {
-    TODO(
-        "not implemented"
-    ) //To change body of created functions use File | Settings | File Templates.
+    intent = if (obj is Event)
+      Intent(this, DetailedEventActivity::class.java)
+    else
+      Intent(this, DetailedCoordinatorActivity::class.java)
+    startActivity(intent)
   }
 
   lateinit var fragment: Fragment

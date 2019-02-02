@@ -30,7 +30,7 @@ class SimpleRecyclerViewAdapter(
   }
 }
 
-open abstract class MyBaseAdapter : RecyclerView.Adapter<MyBaseAdapter.MyViewHolder>() {
+ abstract class MyBaseAdapter : RecyclerView.Adapter<MyBaseAdapter.MyViewHolder>() {
 
     private var recyclerViewOnClick: RecyclerViewOnClick? = null
 
@@ -52,12 +52,6 @@ open abstract class MyBaseAdapter : RecyclerView.Adapter<MyBaseAdapter.MyViewHol
       val obj = getObjForPosition(position)
       holder.bind(obj)
       holder.itemView.setOnClickListener { recyclerViewOnClick!!.rowSelected(obj) }
-
-      holder.itemView.setOnLongClickListener { v ->
-        v.setBackgroundColor(Color.parseColor("#6bdfd3"))
-        recyclerViewOnClick!!.deleteSelectedRow(obj)
-        true
-      }
     }
 
     override fun getItemViewType(position: Int): Int {
