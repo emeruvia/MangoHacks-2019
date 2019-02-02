@@ -3,6 +3,9 @@ apply plugin: 'com.android.application'
 android {
   compileSdkVersion 28
   defaultConfig {
+    dataBinding {
+      enabled = true
+    }
     applicationId "fgcu.mangohacks2019"
     minSdkVersion 24
     targetSdkVersion 28
