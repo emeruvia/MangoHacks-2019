@@ -13,6 +13,8 @@ import android.widget.Toast
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
+import com.apollographql.apollo.sample.GetEventUsersQuery
+import com.apollographql.apollo.sample.GetEventUsersQuery.EventsList
 import com.apollographql.apollo.sample.TestListQuery
 import com.apollographql.apollo.sample.TestListQuery.Data
 import fgcu.mangohacks2019.utils.EightBaseApolloClient
@@ -106,6 +108,20 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
           override fun onFailure(e: ApolloException) {
             Log.d("onFailure", "Trash")
           }
+        })
+    eightBaseApolloClient.query(
+        GetEventUsersQuery.builder().build()
+    )
+        .enqueue(object : ApolloCall.Callback<GetEventUsersQuery.Data>() {
+          override fun onFailure(e: ApolloException) {
+            Log.d("onFailure", "Trash coming from getevent user stuff")
+          }
+
+          override fun onResponse(response: Response<GetEventUsersQuery.Data>) {
+            Log.d("onResponse", response.data()!!.eventsList().items()[0].toString())
+            Log.d("onResponse", response.data()!!.eventUsersList().items()[0].toString())
+          }
+
         })
   }
 }
