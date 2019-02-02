@@ -33,11 +33,17 @@ dependencies {
   implementation 'com.squareup.retrofit2:retrofit:2.5.0'
   implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
+  // OkHTTP
+  implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+
   // ApolloGraphQL
   implementation 'com.apollographql.apollo:apollo-runtime:1.0.0-alpha5'
   implementation 'com.android.support:support-v4:28.0.0'
   implementation 'com.android.support:design:28.0.0'
   apply plugin: 'com.apollographql.android'
+
+  // OAuth
+//  implementation 'com.auth0.android:auth0:1.15.1'
 
   testImplementation 'junit:junit:4.12'
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
