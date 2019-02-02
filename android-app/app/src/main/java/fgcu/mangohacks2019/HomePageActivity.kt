@@ -1,5 +1,6 @@
 package fgcu.mangohacks2019
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.Snackbar
@@ -10,8 +11,14 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
+import android.widget.TextView
 import fgcu.mangohacks2019.adapters.RecyclerViewOnClick
+import fgcu.mangohacks2019.fragments.AttendEventFragment
+import fgcu.mangohacks2019.fragments.EditProfileFragment
 import fgcu.mangohacks2019.fragments.MyEventsFragment
+import fgcu.mangohacks2019.fragments.NearEventFragment
+import fgcu.mangohacks2019.fragments.SubscriptionsFragment
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
 
@@ -27,7 +34,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
   }
 
   lateinit var fragment: Fragment
-  lateinit var appbar: AppBarLayout
+  lateinit var titleTextView: TextView
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -35,7 +42,10 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     setSupportActionBar(toolbar)
     fragment = MyEventsFragment()
     supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit();
-    appbar = findViewById(R.id.appbar_layout)
+    supportActionBar?.setDisplayShowTitleEnabled(false)
+    titleTextView = findViewById(R.id.toolbar_title)
+    titleTextView.text = "My Events"
+
 
     fab.setOnClickListener { view ->
       Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -75,22 +85,33 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     // Handle navigation view item clicks here.
     when (item.itemId) {
       R.id.nav_my_events -> {
-
+        fragment = MyEventsFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
+        titleTextView.text = "My Events"
       }
       R.id.nav_near_events -> {
+        fragment = NearEventFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
 
       }
       R.id.nav_attend_events -> {
-
+        fragment = AttendEventFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
+        titleTextView.text = "Events Attended"
       }
       R.id.nav_subscriptions -> {
-
+        fragment = SubscriptionsFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
+        titleTextView.text = "Subscriptions"
       }
       R.id.nav_edit_profile -> {
-
+        fragment = EditProfileFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
+        titleTextView.text = "Edit Profile"
       }
       R.id.nav_logout -> {
-
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
       }
     }
 
