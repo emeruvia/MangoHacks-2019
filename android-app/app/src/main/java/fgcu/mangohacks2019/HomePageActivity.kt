@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.EventLog
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
@@ -19,13 +20,18 @@ import fgcu.mangohacks2019.fragments.EditProfileFragment
 import fgcu.mangohacks2019.fragments.MyEventsFragment
 import fgcu.mangohacks2019.fragments.NearEventFragment
 import fgcu.mangohacks2019.fragments.SubscriptionsFragment
+import fgcu.mangohacks2019.models.Event
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
 
 class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, RecyclerViewOnClick {
 
   override fun rowSelected(obj: Any) {
-
+      intent = if(obj is Event)
+        Intent(this,DetailedEventActivity::class.java)
+      else
+        Intent(this,DetailedCoordinatorActivity::class.java)
+      startActivity(intent)
   }
 
   lateinit var fragment: Fragment

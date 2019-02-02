@@ -9,9 +9,9 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
       android:theme="@style/AppTheme">
-    <activity android:name=".fragments.DetailedCoordinatorActivity">
+    <activity android:name=".DetailedCoordinatorActivity">
     </activity>
-    <activity android:name=".fragments.DetailedEventActivity">
+    <activity android:name=".DetailedEventActivity">
     </activity>
     <activity
         android:name=".HomePageActivity"

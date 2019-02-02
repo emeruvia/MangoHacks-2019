@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DetailedCoordinatorActivity">
+    tools:context=".DetailedCoordinatorActivity">
 
   <ImageView
       android:id="@+id/background_imageview"
@@ -113,7 +113,6 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/event_label_textview">
   </android.support.v7.widget.RecyclerView>
-
 
 
 </android.support.constraint.ConstraintLayout>
