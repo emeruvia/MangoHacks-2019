@@ -7,4 +7,55 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+  <ImageView
+      android:id="@+id/logo_imageview"
+      android:layout_width="200dp"
+      android:layout_height="200dp"
+      app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="84dp"
+      android:layout_marginEnd="106dp" app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      android:layout_marginStart="106dp"
+      android:background="#000"/>
+
+  <EditText
+      android:id="@+id/email_edittext"
+      android:layout_width="320dp"
+      android:layout_height="wrap_content"
+      android:inputType="textEmailAddress"
+      android:layout_marginTop="32dp"
+      android:hint="Email"
+      app:layout_constraintTop_toBottomOf="@+id/logo_imageview"
+      app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="46dp"
+      app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="45dp"/>
+
+  <EditText
+      android:id="@+id/password_edittext"
+      android:layout_width="320dp"
+      android:layout_height="wrap_content"
+      android:inputType="textPassword"
+      android:hint="Password"
+      android:layout_marginEnd="46dp" app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="45dp"
+      android:layout_marginTop="32dp" app:layout_constraintTop_toBottomOf="@+id/email_edittext"/>
+
+  <Button
+      android:id="@+id/login_button"
+      android:text="Login"
+      android:layout_width="200dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="32dp"
+      app:layout_constraintTop_toBottomOf="@+id/password_edittext"
+      app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="106dp"
+      app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="106dp"/>
+
+  <TextView
+      android:id="@+id/sign_up_textview"
+      android:textSize="24sp"
+      android:text="Don't have an account? Sign Up"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="39dp"
+      app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="40dp"
+      app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="32dp"
+      app:layout_constraintTop_toBottomOf="@+id/login_button"/>
 </android.support.constraint.ConstraintLayout>
