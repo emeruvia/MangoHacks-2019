@@ -5,6 +5,9 @@ apply plugin: 'kotlin-android'
 android {
   compileSdkVersion 28
   defaultConfig {
+    dataBinding {
+      enabled = true
+    }
     applicationId "fgcu.mangohacks2019"
     minSdkVersion 24
     targetSdkVersion 28
@@ -31,13 +34,20 @@ dependencies {
 
   // ApolloGraphQL
   implementation 'com.apollographql.apollo:apollo-runtime:1.0.0-alpha5'
+  implementation 'com.android.support:support-v4:28.0.0'
+  implementation 'com.android.support:design:28.0.0'
   apply plugin: 'com.apollographql.android'
 
   testImplementation 'junit:junit:4.12'
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+  //Kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+  //Picasso
+  implementation 'com.squareup.picasso:picasso:2.71828'
 }
 repositories {
-    mavenCentral()
+  mavenCentral()
 }

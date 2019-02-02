@@ -9,7 +9,9 @@ buildscript {
   dependencies {
     classpath 'com.android.tools.build:gradle:3.3.0'
     classpath 'com.apollographql.apollo:apollo-gradle-plugin:1.0.0-alpha5'
-      classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
   }
 }
 
