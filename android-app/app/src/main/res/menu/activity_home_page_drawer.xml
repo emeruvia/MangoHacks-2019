@@ -7,51 +7,51 @@
   <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:state_checked="true"
-          android:color="@color/colorPrimary"
+          android:color="@color/primaryColor"
           android:title="My Events"/>
 
     <item android:state_checked="false"
-          android:color="@color/colorAccent"
+          android:color="@color/secondaryColor"
           android:title="My Events"/>
 
     <item android:state_checked="true"
-        android:color="@color/colorPrimary"
+        android:color="@color/primaryColor"
         android:title="Events Near Me"/>
 
     <item android:state_checked="false"
-        android:color="@color/colorAccent"
+        android:color="@color/secondaryColor"
         android:title="Events Near Me"/>
 
     <item android:state_checked="true"
-        android:color="@color/colorPrimary"
+        android:color="@color/primaryColor"
         android:title="Attending Events"/>
 
     <item android:state_checked="false"
-        android:color="@color/colorAccent"
+        android:color="@color/secondaryColor"
         android:title="Attending Events"/>
 
     <item android:state_checked="true"
-        android:color="@color/colorPrimary"
+        android:color="@color/primaryColor"
         android:title="Subscriptions"/>
 
     <item android:state_checked="false"
-        android:color="@color/colorAccent"
+        android:color="@color/secondaryColor"
         android:title="Subscriptions"/>
 
     <item android:state_checked="true"
-        android:color="@color/colorPrimary"
+        android:color="@color/primaryColor"
         android:title="Edit Profile"/>
 
     <item android:state_checked="false"
-        android:color="@color/colorAccent"
+        android:color="@color/secondaryColor"
         android:title="Edit Profile"/>
 
     <item android:state_checked="true"
-        android:color="@color/colorPrimary"
+        android:color="@color/primaryColor"
         android:title="Logout"/>
 
     <item android:state_checked="false"
-        android:color="@color/colorAccent"
+        android:color="@color/secondaryColor"
         android:title="Logout"/>
 
   </selector>
@@ -60,33 +60,33 @@
     <item
         android:id="@+id/nav_my_events"
         android:icon="@drawable/ic_my_event"
-        android:iconTint="@color/colorAccent"
+        android:iconTint="@color/secondaryColor"
         android:title="My Events"/>
     <item
         android:id="@+id/nav_near_events"
         android:icon="@drawable/ic_near_event"
         android:title="Events Near Me"
-        android:iconTint="@color/colorAccent"/>
+        android:iconTint="@color/secondaryColor"/>
     <item
         android:id="@+id/nav_attend_events"
         android:icon="@drawable/ic_attend_event"
         android:title="Attending Events"
-        android:iconTint="@color/colorAccent"/>
+        android:iconTint="@color/secondaryColor"/>
     <item
         android:id="@+id/nav_subscriptions"
         android:icon="@drawable/ic_subscription"
         android:title="Subscriptions"
-        android:iconTint="@color/colorAccent"/>
+        android:iconTint="@color/secondaryColor"/>
     <item
         android:id="@+id/nav_edit_profile"
         android:icon="@drawable/ic_edit_profile"
         android:title="Edit Profile"
-        android:iconTint="@color/colorAccent"/>
+        android:iconTint="@color/secondaryColor"/>
     <item
         android:id="@+id/nav_logout"
         android:icon="@drawable/ic_logout"
         android:title="Logout"
-        android:iconTint="@color/colorAccent"/>
+        android:iconTint="@color/secondaryColor"/>
   </group>
 
 </menu>
