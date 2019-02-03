@@ -73,7 +73,7 @@
           android:layout_height="wrap_content"
           android:layout_marginStart="8dp"
           android:layout_marginTop="16dp"
-          android:text="@{obj.coordintator.name}"
+          android:text="@{obj.user.name}"
           android:textColor="@color/primaryTextColor"
           android:textSize="26px"
           app:layout_constraintStart_toEndOf="@+id/coordinator_imageview"

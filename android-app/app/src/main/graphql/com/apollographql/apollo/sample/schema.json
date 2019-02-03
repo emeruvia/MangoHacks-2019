@@ -4051,7 +4051,7 @@
               "description": null,
               "type": {
                 "kind": "INPUT_OBJECT",
-                "name": "DatePredicate",
+                "name": "StringPredicate",
                 "ofType": null
               },
               "defaultValue": null
@@ -4256,123 +4256,6 @@
         },
         {
           "kind": "INPUT_OBJECT",
-          "name": "DatePredicate",
-          "description": null,
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "equals",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "not_equals",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "in",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Date",
-                    "ofType": null
-                  }
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "not_in",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Date",
-                    "ofType": null
-                  }
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lt",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lte",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "gt",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "gte",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "Date",
-          "description": "A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
           "name": "ClientFilter",
           "description": null,
           "fields": null,
@@ -4462,7 +4345,7 @@
               "description": null,
               "type": {
                 "kind": "INPUT_OBJECT",
-                "name": "BigIntPredicate",
+                "name": "StringPredicate",
                 "ofType": null
               },
               "defaultValue": null
@@ -4534,123 +4417,6 @@
               "defaultValue": null
             }
           ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "BigIntPredicate",
-          "description": null,
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "equals",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigInt",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "not_equals",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigInt",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "in",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "BigInt",
-                    "ofType": null
-                  }
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "not_in",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "BigInt",
-                    "ofType": null
-                  }
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lt",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigInt",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lte",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigInt",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "gt",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigInt",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "gte",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigInt",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "BigInt",
-          "description": "The `BigInt` scalar type represents whole numeric values.",
-          "fields": null,
-          "inputFields": null,
           "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
@@ -7753,7 +7519,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "Date",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -7920,7 +7686,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "BigInt",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -16648,10 +16414,10 @@
               "description": null,
               "type": {
                 "kind": "SCALAR",
-                "name": "BigInt",
+                "name": "String",
                 "ofType": null
               },
-              "defaultValue": null
+              "defaultValue": "null"
             },
             {
               "name": "event",
@@ -16783,10 +16549,10 @@
               "description": null,
               "type": {
                 "kind": "SCALAR",
-                "name": "Date",
+                "name": "String",
                 "ofType": null
               },
-              "defaultValue": null
+              "defaultValue": "null"
             },
             {
               "name": "image",
@@ -17079,10 +16845,10 @@
               "description": null,
               "type": {
                 "kind": "SCALAR",
-                "name": "Date",
+                "name": "String",
                 "ofType": null
               },
-              "defaultValue": null
+              "defaultValue": "null"
             },
             {
               "name": "image",
@@ -17236,10 +17002,10 @@
               "description": null,
               "type": {
                 "kind": "SCALAR",
-                "name": "BigInt",
+                "name": "String",
                 "ofType": null
               },
-              "defaultValue": null
+              "defaultValue": "null"
             },
             {
               "name": "event",
@@ -17358,7 +17124,7 @@
               "description": null,
               "type": {
                 "kind": "SCALAR",
-                "name": "BigInt",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
@@ -17729,10 +17495,10 @@
               "description": null,
               "type": {
                 "kind": "SCALAR",
-                "name": "Date",
+                "name": "String",
                 "ofType": null
               },
-              "defaultValue": null
+              "defaultValue": "null"
             },
             {
               "name": "image",
@@ -17855,7 +17621,7 @@
               "description": null,
               "type": {
                 "kind": "SCALAR",
-                "name": "Date",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
