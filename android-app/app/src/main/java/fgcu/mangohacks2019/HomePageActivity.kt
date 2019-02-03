@@ -77,6 +77,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     toggle.syncState()
 
     nav_view.setNavigationItemSelectedListener(this)
+    nav_view.itemIconTintList = null
   }
 
   override fun onBackPressed() {
