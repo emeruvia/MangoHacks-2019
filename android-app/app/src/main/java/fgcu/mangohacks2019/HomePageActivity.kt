@@ -2,15 +2,30 @@ package fgcu.mangohacks2019
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.AppBarLayout
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.EventLog
+
+import android.util.Log
+
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
+import com.apollographql.apollo.ApolloCall
+import com.apollographql.apollo.api.Response
+import com.apollographql.apollo.exception.ApolloException
+import com.apollographql.apollo.sample.GetEventUsersQuery
+import com.apollographql.apollo.sample.GetEventUsersQuery.EventsList
+import com.apollographql.apollo.sample.TestListQuery
+import com.apollographql.apollo.sample.TestListQuery.Data
 import fgcu.mangohacks2019.utils.EightBaseApolloClient
+import android.widget.EditText
 import android.widget.TextView
 import fgcu.mangohacks2019.adapters.RecyclerViewOnClick
 import fgcu.mangohacks2019.fragments.AttendEventFragment
@@ -21,19 +36,16 @@ import fgcu.mangohacks2019.fragments.SubscriptionsFragment
 import fgcu.mangohacks2019.models.Event
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
+import fgcu.mangohacks2019.LanguagePreferences
 
-class HomePageActivity : AppCompatActivity(),
-    NavigationView.OnNavigationItemSelectedListener,
-    RecyclerViewOnClick {
-
-//  private lateinit var eightBaseApolloClient: ApolloClient
+class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, RecyclerViewOnClick {
 
   override fun rowSelected(obj: Any) {
-    intent = if (obj is Event)
-      Intent(this, DetailedEventActivity::class.java)
-    else
-      Intent(this, DetailedCoordinatorActivity::class.java)
-    startActivity(intent)
+      intent = if(obj is Event)
+        Intent(this,DetailedEventActivity::class.java)
+      else
+        Intent(this,DetailedCoordinatorActivity::class.java)
+      startActivity(intent)
   }
 
   lateinit var fragment: Fragment
@@ -44,23 +56,17 @@ class HomePageActivity : AppCompatActivity(),
     setContentView(R.layout.activity_home_page)
     setSupportActionBar(toolbar)
     fragment = MyEventsFragment()
-    supportFragmentManager.beginTransaction()
-        .replace(R.id.fragment, fragment, fragment.getTag())
-        .commit()
+    supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit();
     supportActionBar?.setDisplayShowTitleEnabled(false)
-//    eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
     titleTextView = findViewById(R.id.toolbar_title)
     titleTextView.text = "My Events"
 
 
-//    getPost()
+    getPost()
 
     fab.setOnClickListener { view ->
-      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-          .setAction("Action", null)
-          .show()
-      // TODO add events
-//      createEvent()
+      intent = Intent(this, CreateEventActivity::class.java)
+      startActivity(intent)
     }
 
     val toggle = ActionBarDrawerToggle(
@@ -71,6 +77,7 @@ class HomePageActivity : AppCompatActivity(),
     toggle.syncState()
 
     nav_view.setNavigationItemSelectedListener(this)
+    nav_view.itemIconTintList = null
   }
 
   override fun onBackPressed() {
@@ -88,7 +95,7 @@ class HomePageActivity : AppCompatActivity(),
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
-      R.id.action_settings -> return true
+      R.id.action_settings ->{ intent = Intent(this,LanguagePreferences::class.java) ; startActivity(intent); return true;}
       else -> return super.onOptionsItemSelected(item)
     }
   }
@@ -98,37 +105,27 @@ class HomePageActivity : AppCompatActivity(),
     when (item.itemId) {
       R.id.nav_my_events -> {
         fragment = MyEventsFragment()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment, fragment, fragment.getTag())
-            .commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
         titleTextView.text = "My Events"
       }
       R.id.nav_near_events -> {
         fragment = NearEventFragment()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment, fragment, fragment.getTag())
-            .commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
 
       }
       R.id.nav_attend_events -> {
         fragment = AttendEventFragment()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment, fragment, fragment.getTag())
-            .commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
         titleTextView.text = "Events Attended"
       }
       R.id.nav_subscriptions -> {
         fragment = SubscriptionsFragment()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment, fragment, fragment.getTag())
-            .commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
         titleTextView.text = "Subscriptions"
       }
       R.id.nav_edit_profile -> {
         fragment = EditProfileFragment()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment, fragment, fragment.getTag())
-            .commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
         titleTextView.text = "Edit Profile"
       }
       R.id.nav_logout -> {
@@ -141,59 +138,45 @@ class HomePageActivity : AppCompatActivity(),
     return true
   }
 
-  private fun createEvent() {
-//    eightBaseApolloClient.mutate(
-//        PostCreateEventMutation.builder()
-//            .title("post from app")
-//            .address("1234 fort myers FL")
-//            .description("This is a test to see if it works")
-//            .price(1230.04).build()
-//    )
-//        .enqueue(object : ApolloCall.Callback<PostCreateEventMutation.Data>() {
-//          override fun onFailure(e: ApolloException) {
-//            Log.d("onFailure", "Failed from post create event")
-//            Log.d("onFailure", e.localizedMessage)
-//          }
-//
-//          override fun onResponse(response: Response<Data>) {
-//            Log.d("onResponse", "Object created")
-//          }
-//
-//        })
+  private fun getPost() {
+    val eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
+    eightBaseApolloClient.query(
+        TestListQuery.builder().build()
+    )
+        .enqueue(object : ApolloCall.Callback<TestListQuery.Data>() {
+          override fun onResponse(response: Response<TestListQuery.Data>) {
+            Log.d("onResponse", response.data()!!.testsList().items().toString())
+            this@HomePageActivity.runOnUiThread {
+              Toast.makeText(applicationContext, "Response works", Toast.LENGTH_SHORT)
+                  .show()
+            }
+          }
+
+          override fun onFailure(e: ApolloException) {
+            Log.d("onFailure", "Trash")
+          }
+        })
+    eightBaseApolloClient.query(
+        GetEventUsersQuery.builder().build()
+    )
+        .enqueue(object : ApolloCall.Callback<GetEventUsersQuery.Data>() {
+          override fun onFailure(e: ApolloException) {
+            Log.d("onFailure", "Trash coming from getevent user stuff")
+          }
+
+          override fun onResponse(response: Response<GetEventUsersQuery.Data>) {
+            Log.d("onResponse", response.data()!!.eventsList().items()[0].toString())
+            Log.d("onResponse", response.data()!!.eventUsersList().items()[0].toString())
+          }
+
+        })
+  }
+
+  fun updateProfile(view: View){
 
   }
 
-  private fun getPost() {
-//    eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
-//    eightBaseApolloClient.query(
-//        TestListQuery.builder().build()
-//    )
-//        .enqueue(object : ApolloCall.Callback<TestListQuery.Data>() {
-//          override fun onResponse(response: Response<TestListQuery.Data>) {
-//            Log.d("onResponse", response.data()!!.testsList().items().toString())
-//            this@HomePageActivity.runOnUiThread {
-//              Toast.makeText(applicationContext, "Response works", Toast.LENGTH_SHORT)
-//                  .show()
-//            }
-//          }
-//
-//          override fun onFailure(e: ApolloException) {
-//            Log.d("onFailure", "Trash")
-//          }
-//        })
-//    eightBaseApolloClient.query(
-//        GetEventsQuery.builder().build()
-//    )
-//        .enqueue(object : ApolloCall.Callback<GetEventsQuery.Data>() {
-//          override fun onFailure(e: ApolloException) {
-//            Log.d("onFailure", "Trash coming from getevent user stuff")
-//            Log.d("onFailure", e.message)
-//            Log.d("onFailure", e.localizedMessage)
-//          }
-//
-//          override fun onResponse(response: Response<GetEventsQuery.Data>) {
-//            Log.d("onResponse", response.data()!!.eventsList().items()[0].toString())
-//          }
-//        })
+  fun showDialog(view: View){
+
   }
 }
