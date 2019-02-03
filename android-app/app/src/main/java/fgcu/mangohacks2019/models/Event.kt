@@ -5,7 +5,7 @@ import java.util.*
 data class Event(
   var name: String,
   var address: String,
-  var coordintator: Coordinator,
+  var user: User,
   var image: String,
   var description: String,
   var date: Date,
