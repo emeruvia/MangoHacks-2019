@@ -1,0 +1,17 @@
+query AuthenticateUser(
+  $email: StringPredicate!
+  $password: StringPredicate!
+){
+	clientsList(filter:{
+    email: $email,
+    password: $password
+  }){
+    count
+    items{
+      id
+      email
+      firstName
+      lastName
+    }
+  }
+}

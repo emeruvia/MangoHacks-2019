@@ -20,6 +20,7 @@
         android:id="@+id/customize_background_imageview"
         android:layout_width="match_parent"
         android:layout_height="200sp"
+
         android:background="@color/primaryLightColor"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +37,7 @@
         android:onClick="showDialog"
         android:text="Change Background"
         android:textAllCaps="false"
+
         android:textColor="@color/primaryTextColor"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"

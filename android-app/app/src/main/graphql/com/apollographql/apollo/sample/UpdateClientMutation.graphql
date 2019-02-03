@@ -1,18 +1,22 @@
-mutation UpdateClientByIDMutation(
-  $userId: ID
-	$firstName: String
+mutation UpdateClientMutation(
+  $id: ID!
+  $firstName: String
   $lastName: String
   $baseCity: String
+  $phoneNumber: BigInt
 ){
   clientUpdate(data:{
-    id: $userId
+    id: $id
     firstName: $firstName
     lastName: $lastName
     baseCity: $baseCity
+    phoneNumber: $phoneNumber
   }){
     id
+    email
     firstName
     lastName
     baseCity
+    phoneNumber
   }
 }
