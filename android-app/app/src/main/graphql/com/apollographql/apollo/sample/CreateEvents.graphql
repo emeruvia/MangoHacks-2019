@@ -1,0 +1,25 @@
+mutation CreateEvents(
+  $title: String
+  $description: String
+  $address: String
+  $price: Float
+  $date: Date
+  $image: String
+){
+  eventCreate(data:{
+    titleOfEvent: $title
+    description: $description
+    address: $address
+    price: $price
+    date: $date
+    image: $image
+  }){
+    id
+    titleOfEvent
+    description
+    address
+    price
+    date
+    image
+  }
+}
