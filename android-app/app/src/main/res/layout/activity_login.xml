@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
 
-  <ImageView
-      android:id="@+id/logo_imageview"
-      android:layout_width="200dp"
-      android:layout_height="200dp"
-      android:layout_marginStart="106dp"
-      android:layout_marginTop="84dp"
-      android:layout_marginEnd="106dp"
-      android:background="@color/primaryColor"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        app:lottie_rawRes="@raw/world"
+        android:id="@+id/world"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="EVENTOS"
+        android:textAlignment="center"
+        android:textSize="60sp"
+        android:textColor="@color/primaryTextColor"
+        app:layout_constraintTop_toBottomOf="@+id/world"/>
 
   <EditText
       android:id="@+id/email_edittext"
-      android:layout_width="320dp"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginStart="45dp"
+      android:layout_marginStart="40dp"
       android:layout_marginTop="32dp"
-      android:layout_marginEnd="46dp"
+      android:layout_marginEnd="40dp"
       android:backgroundTint="@color/secondaryColor"
       android:hint="Email"
       android:inputType="textEmailAddress"
@@ -37,11 +44,11 @@
 
   <EditText
       android:id="@+id/login_password_et"
-      android:layout_width="320dp"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginStart="45dp"
+      android:layout_marginStart="40dp"
       android:layout_marginTop="32dp"
-      android:layout_marginEnd="46dp"
+      android:layout_marginEnd="40dp"
       android:backgroundTint="@color/secondaryColor"
       android:hint="Password"
       android:inputType="textPassword"
@@ -53,11 +60,11 @@
 
   <Button
       android:id="@+id/login_button"
-      android:layout_width="200dp"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginStart="106dp"
+      android:layout_marginStart="100dp"
       android:layout_marginTop="32dp"
-      android:layout_marginEnd="106dp"
+      android:layout_marginEnd="100dp"
       android:background="@color/secondaryColor"
       android:textColor="@color/primaryTextColor"
       android:onClick="onClick"
@@ -69,11 +76,10 @@
 
   <TextView
       android:id="@+id/sign_up_textview"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginStart="92dp"
+      android:textAlignment="center"
       android:layout_marginTop="8dp"
-      android:layout_marginEnd="93dp"
       android:onClick="onClick"
       android:text="Don't have an account? Sign Up"
       android:textColor="@color/primaryTextColor"
@@ -81,4 +87,4 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/login_button" />
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
