@@ -61,7 +61,7 @@ class CreateEventActivity : AppCompatActivity() {
   fun createEvent(view: View) {
     Toast.makeText(this, "Create Event", Toast.LENGTH_SHORT)
         .show()
-//    val client: ApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
+    createEvent()
   }
 
   fun showDialog(view: View) {
@@ -164,7 +164,7 @@ class CreateEventActivity : AppCompatActivity() {
     val client: ApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
     client.mutate(
         CreateEventMutation.builder()
-            .id("")
+            .id("cjroqjfmp02wt01quob8o2cor")
             .title(eventTitle.text.toString())
             .description(descriptionEt.text.toString())
             .address(cityEt.text.toString())
