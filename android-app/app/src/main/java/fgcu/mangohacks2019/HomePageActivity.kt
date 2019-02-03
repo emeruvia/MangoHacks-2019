@@ -35,6 +35,7 @@ import fgcu.mangohacks2019.fragments.SubscriptionsFragment
 import fgcu.mangohacks2019.models.Event
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
+import fgcu.mangohacks2019.LanguagePreferences
 
 class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, RecyclerViewOnClick {
 
@@ -93,7 +94,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
-      R.id.action_settings -> return true
+      R.id.action_settings ->{ intent = Intent(this,LanguagePreferences::class.java) ; startActivity(intent); return true;}
       else -> return super.onOptionsItemSelected(item)
     }
   }
