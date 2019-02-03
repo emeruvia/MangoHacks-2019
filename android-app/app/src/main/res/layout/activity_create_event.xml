@@ -59,7 +59,7 @@
         android:textColorHint="@color/primaryTextColor"/>
 
     <EditText
-        android:id="@+id/email_edittext"
+        android:id="@+id/date_edittext"
         style="@style/CustomizePageEditText"
         android:hint="Date"
         android:inputType="date"
@@ -76,7 +76,7 @@
         style="@style/CustomizePageEditText"
         android:hint="Address"
         android:inputType="textPostalAddress"
-        app:layout_constraintTop_toBottomOf="@+id/email_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/date_edittext"
         android:singleLine="true"
         android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
