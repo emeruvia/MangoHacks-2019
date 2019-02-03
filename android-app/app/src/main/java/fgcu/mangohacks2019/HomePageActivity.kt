@@ -22,6 +22,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.storage.FirebaseStorage
+import com.apollographql.apollo.ApolloClient
 import fgcu.mangohacks2019.adapters.RecyclerViewOnClick
 import fgcu.mangohacks2019.fragments.AttendEventFragment
 import fgcu.mangohacks2019.fragments.EditProfileFragment
@@ -139,7 +140,6 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     drawer_layout.closeDrawer(GravityCompat.START)
     return true
   }
-
 
   fun updateProfile(view: View){
 
