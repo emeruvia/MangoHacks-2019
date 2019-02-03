@@ -63,7 +63,7 @@ class CreateEventActivity : AppCompatActivity() {
 
   fun createEvent(view: View) {
     Toast.makeText(this, "Create Event", Toast.LENGTH_SHORT).show()
-    val client: ApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
+//    val client: ApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
   }
 
   fun showDialog(view: View) {
