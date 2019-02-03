@@ -8,18 +8,10 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.apollographql.apollo.ApolloCall
-import com.apollographql.apollo.api.Response
-import com.apollographql.apollo.exception.ApolloException
 import fgcu.mangohacks2019.utils.EightBaseApolloClient
 import android.widget.TextView
-import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.sample.GetEventsQuery
-import com.apollographql.apollo.sample.PostCreateEventMutation
-import com.apollographql.apollo.sample.PostCreateEventMutation.Data
 import fgcu.mangohacks2019.adapters.RecyclerViewOnClick
 import fgcu.mangohacks2019.fragments.AttendEventFragment
 import fgcu.mangohacks2019.fragments.EditProfileFragment
@@ -34,7 +26,7 @@ class HomePageActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener,
     RecyclerViewOnClick {
 
-  private lateinit var eightBaseApolloClient: ApolloClient
+//  private lateinit var eightBaseApolloClient: ApolloClient
 
   override fun rowSelected(obj: Any) {
     intent = if (obj is Event)
@@ -56,19 +48,19 @@ class HomePageActivity : AppCompatActivity(),
         .replace(R.id.fragment, fragment, fragment.getTag())
         .commit()
     supportActionBar?.setDisplayShowTitleEnabled(false)
-    eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
+//    eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
     titleTextView = findViewById(R.id.toolbar_title)
     titleTextView.text = "My Events"
 
 
-    getPost()
+//    getPost()
 
     fab.setOnClickListener { view ->
       Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
           .setAction("Action", null)
           .show()
       // TODO add events
-      createEvent()
+//      createEvent()
     }
 
     val toggle = ActionBarDrawerToggle(
@@ -150,29 +142,29 @@ class HomePageActivity : AppCompatActivity(),
   }
 
   private fun createEvent() {
-    eightBaseApolloClient.mutate(
-        PostCreateEventMutation.builder()
-            .title("post from app")
-            .address("1234 fort myers FL")
-            .description("This is a test to see if it works")
-            .price(1230.04).build()
-    )
-        .enqueue(object : ApolloCall.Callback<PostCreateEventMutation.Data>() {
-          override fun onFailure(e: ApolloException) {
-            Log.d("onFailure", "Failed from post create event")
-            Log.d("onFailure", e.localizedMessage)
-          }
-
-          override fun onResponse(response: Response<Data>) {
-            Log.d("onResponse", "Object created")
-          }
-
-        })
+//    eightBaseApolloClient.mutate(
+//        PostCreateEventMutation.builder()
+//            .title("post from app")
+//            .address("1234 fort myers FL")
+//            .description("This is a test to see if it works")
+//            .price(1230.04).build()
+//    )
+//        .enqueue(object : ApolloCall.Callback<PostCreateEventMutation.Data>() {
+//          override fun onFailure(e: ApolloException) {
+//            Log.d("onFailure", "Failed from post create event")
+//            Log.d("onFailure", e.localizedMessage)
+//          }
+//
+//          override fun onResponse(response: Response<Data>) {
+//            Log.d("onResponse", "Object created")
+//          }
+//
+//        })
 
   }
 
   private fun getPost() {
-    eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
+//    eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
 //    eightBaseApolloClient.query(
 //        TestListQuery.builder().build()
 //    )
@@ -189,19 +181,19 @@ class HomePageActivity : AppCompatActivity(),
 //            Log.d("onFailure", "Trash")
 //          }
 //        })
-    eightBaseApolloClient.query(
-        GetEventsQuery.builder().build()
-    )
-        .enqueue(object : ApolloCall.Callback<GetEventsQuery.Data>() {
-          override fun onFailure(e: ApolloException) {
-            Log.d("onFailure", "Trash coming from getevent user stuff")
-            Log.d("onFailure", e.message)
-            Log.d("onFailure", e.localizedMessage)
-          }
-
-          override fun onResponse(response: Response<GetEventsQuery.Data>) {
-            Log.d("onResponse", response.data()!!.eventsList().items()[0].toString())
-          }
-        })
+//    eightBaseApolloClient.query(
+//        GetEventsQuery.builder().build()
+//    )
+//        .enqueue(object : ApolloCall.Callback<GetEventsQuery.Data>() {
+//          override fun onFailure(e: ApolloException) {
+//            Log.d("onFailure", "Trash coming from getevent user stuff")
+//            Log.d("onFailure", e.message)
+//            Log.d("onFailure", e.localizedMessage)
+//          }
+//
+//          override fun onResponse(response: Response<GetEventsQuery.Data>) {
+//            Log.d("onResponse", response.data()!!.eventsList().items()[0].toString())
+//          }
+//        })
   }
 }
