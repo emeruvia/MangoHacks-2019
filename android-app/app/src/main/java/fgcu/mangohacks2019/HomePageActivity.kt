@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 
 import android.view.Menu
 import android.view.MenuItem
@@ -20,8 +21,14 @@ import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.apollographql.apollo.ApolloCall
 import com.google.firebase.FirebaseApp
 import com.google.firebase.storage.FirebaseStorage
+import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.api.Response
+import com.apollographql.apollo.exception.ApolloException
+import com.apollographql.apollo.sample.GetListOfEventQuery
+import com.apollographql.apollo.sample.GetListOfEventQuery.Data
 import fgcu.mangohacks2019.adapters.RecyclerViewOnClick
 import fgcu.mangohacks2019.fragments.AttendEventFragment
 import fgcu.mangohacks2019.fragments.EditProfileFragment
@@ -29,6 +36,8 @@ import fgcu.mangohacks2019.fragments.MyEventsFragment
 import fgcu.mangohacks2019.fragments.NearEventFragment
 import fgcu.mangohacks2019.fragments.SubscriptionsFragment
 import fgcu.mangohacks2019.models.Event
+import fgcu.mangohacks2019.models.User
+import fgcu.mangohacks2019.utils.EightBaseApolloClient
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
 import java.io.ByteArrayOutputStream
@@ -65,7 +74,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     supportActionBar?.setDisplayShowTitleEnabled(false)
     titleTextView = findViewById(R.id.toolbar_title)
     titleTextView.text = "My Events"
-
+    getEventList()
 
     fab.setOnClickListener { view ->
       intent = Intent(this, CreateEventActivity::class.java)
@@ -139,7 +148,6 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     drawer_layout.closeDrawer(GravityCompat.START)
     return true
   }
-
 
   fun updateProfile(view: View){
 
@@ -218,5 +226,47 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         val backgroundUrl = it.result!!.toString()
       }
     }
+  }
+
+  private fun getEventList(){
+    var list = ArrayList<Event>()
+    val client: ApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
+    client.query(
+        GetListOfEventQuery.builder()
+            .build()
+    )
+        .enqueue(object : ApolloCall.Callback<GetListOfEventQuery.Data>() {
+          override fun onFailure(e: ApolloException) {
+            Log.d("onFailure", e.cause.toString())
+          }
+
+          override fun onResponse(response: Response<Data>) {
+            Log.d("onReponse", response.data().toString())
+            val count: Int = response.data()!!.eventsList()
+                .count()
+            for (i in 0 until count) {
+              var title = response.data()!!.eventsList().items()[i].titleOfEvent()
+              var description = response.data()!!.eventsList().items()[i].description()
+              var address = response.data()!!.eventsList().items()[i].address()
+              var date = response.data()!!.eventsList().items()[i].date()
+              var price = response.data()!!.eventsList().items()[i].price()
+              var username = response.data()!!.eventsList().items()[i].clients()!!.firstName()
+              var baseCity = response.data()!!.eventsList().items()[i].clients()!!.baseCity()
+              var email = response.data()!!.eventsList().items()[i].clients()!!.baseCity()
+              var phoneNumber = response.data()!!.eventsList().items()[i].clients()!!.phoneNumber()
+              list.add(
+                  Event(
+                      title!!, address!!, User(username!!, baseCity!!, email!!, phoneNumber!!), "",
+                      description!!, date!!, price!!
+                  )
+              )
+            }
+
+            fragment.apply { arguments = Bundle().apply { putParcelableArrayList("list", list) } }
+            supportFragmentManager.beginTransaction().detach(fragment).attach(fragment).commit()
+
+
+          }
+        })
   }
 }

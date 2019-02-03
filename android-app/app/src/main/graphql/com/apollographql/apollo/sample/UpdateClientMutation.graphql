@@ -3,7 +3,7 @@ mutation UpdateClientMutation(
   $firstName: String
   $lastName: String
   $baseCity: String
-  $phoneNumber: BigInt
+  $phoneNumber: String
 ){
   clientUpdate(data:{
     id: $id

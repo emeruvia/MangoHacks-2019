@@ -1,0 +1,25 @@
+query GetListOfEvent{
+  eventsList{
+    count
+    items{
+      id
+      titleOfEvent
+      description
+      address
+      price
+      date
+      image{
+        downloadUrl
+      }
+      clients{
+        id
+        firstName
+        lastName
+        baseCity
+        email
+        phoneNumber
+
+      }
+    }
+  }
+}

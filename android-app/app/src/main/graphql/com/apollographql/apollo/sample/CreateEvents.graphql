@@ -4,7 +4,7 @@ mutation CreateEvent(
   $description: String
   $address: String
   $price: Float
-  $date: Date
+  $date: String
 ){
   eventCreate(data:{
     clients:{
