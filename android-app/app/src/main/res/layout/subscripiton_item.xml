@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+<data>
+  <variable name="obj" type="fgcu.mangohacks2019.models.Coordinator">
+
+  </variable>
+</data>
+
+  <android.support.v7.widget.CardView
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/backgroundColor"
+      app:cardBackgroundColor="@color/primaryLightColor"
+      app:cardUseCompatPadding="true"
+      app:cardCornerRadius="10dp">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <ImageView
+          android:id="@+id/profile_imageview"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="16dp"
+          android:background="#FFFFFF"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/name_textview"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="8dp"
+          android:text="@{obj.name}"
+          android:textColor="@color/primaryTextColor"
+          android:textSize="26px"
+          app:layout_constraintStart_toEndOf="@+id/profile_imageview"
+          app:layout_constraintTop_toTopOf="@+id/profile_imageview" />
+
+      <TextView
+          android:id="@+id/phone_number_textview"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="16dp"
+          android:text="@{obj.phoneNumber}"
+          android:textColor="@color/primaryTextColor"
+          android:textSize="26px"
+          app:layout_constraintStart_toEndOf="@+id/profile_imageview"
+          app:layout_constraintTop_toBottomOf="@+id/name_textview" />
+
+    </android.support.constraint.ConstraintLayout>
+  </android.support.v7.widget.CardView>
+</layout>

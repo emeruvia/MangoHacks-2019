@@ -1,0 +1,22 @@
+mutation UpdateClientMutation(
+  $id: ID!
+  $firstName: String
+  $lastName: String
+  $baseCity: String
+  $phoneNumber: String
+){
+  clientUpdate(data:{
+    id: $id
+    firstName: $firstName
+    lastName: $lastName
+    baseCity: $baseCity
+    phoneNumber: $phoneNumber
+  }){
+    id
+    email
+    firstName
+    lastName
+    baseCity
+    phoneNumber
+  }
+}

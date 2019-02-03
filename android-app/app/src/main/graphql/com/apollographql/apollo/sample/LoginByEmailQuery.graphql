@@ -1,0 +1,12 @@
+query LoginQuery(
+  $email: String!
+){
+  client(email: $email){
+    id
+    email
+    password
+    firstName
+    lastName
+    baseCity
+  }
+}

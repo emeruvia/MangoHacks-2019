@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
   <group android:checkableBehavior="single">
     <item
-        android:id="@+id/nav_camera"
-        android:icon="@drawable/ic_menu_camera"
+        android:id="@+id/nav_my_events"
+        android:icon="@drawable/ic_my_event"
+        android:iconTint="@color/secondaryColor"
         android:title="My Events"/>
     <item
-        android:id="@+id/nav_gallery"
-        android:icon="@drawable/ic_menu_gallery"
-        android:title="Events Near Me"/>
+        android:id="@+id/nav_near_events"
+        android:icon="@drawable/ic_near_event"
+        android:title="Events Near Me"
+        android:iconTint="@color/secondaryColor"/>
     <item
-        android:id="@+id/nav_slideshow"
-        android:icon="@drawable/ic_menu_slideshow"
-        android:title="Attending Events"/>
+        android:id="@+id/nav_attend_events"
+        android:icon="@drawable/ic_attend_event"
+        android:title="Attending Events"
+        android:iconTint="@color/secondaryColor"/>
     <item
-        android:id="@+id/nav_manage"
-        android:icon="@drawable/ic_menu_manage"
-        android:title="Subscriptions"/>
+        android:id="@+id/nav_subscriptions"
+        android:icon="@drawable/ic_subscription"
+        android:title="Subscriptions"
+        android:iconTint="@color/secondaryColor"/>
     <item
         android:id="@+id/nav_edit_profile"
-        android:icon="@drawable/ic_menu_manage"
-        android:title="Edit Profile"/>
+        android:icon="@drawable/ic_edit_profile"
+        android:title="Edit Profile"
+        android:iconTint="@color/secondaryColor"/>
     <item
         android:id="@+id/nav_logout"
-        android:icon="@drawable/ic_menu_manage"
-        android:title="Logout"/>
+        android:icon="@drawable/ic_logout"
+        android:title="Logout"
+        android:iconTint="@color/secondaryColor"/>
   </group>
 
 </menu>
