@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
+    android:background="@color/backgroundColor"
     tools:context=".SignUpActivity">
 
   <ImageView
@@ -14,7 +14,7 @@
       android:layout_marginStart="106dp"
       android:layout_marginTop="32dp"
       android:layout_marginEnd="106dp"
-      android:background="#FFFFFF"
+      android:background="@color/primaryColor"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,7 @@
       android:layout_marginTop="32dp"
       android:layout_marginEnd="144dp"
       android:text="Sign Up"
-      android:textColor="#38B5E6"
+      android:textColor="@color/primaryTextColor"
       android:textSize="36sp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -40,10 +40,11 @@
       android:layout_marginStart="45dp"
       android:layout_marginTop="28dp"
       android:layout_marginEnd="46dp"
-      android:backgroundTint="#E13CB0"
+      android:backgroundTint="@color/secondaryColor"
       android:hint="Email"
       android:inputType="textEmailAddress"
-      android:textColorHint="#38B5E6"
+      android:textColor="@color/primaryTextColor"
+      android:textColorHint="@color/primaryTextColor"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/sign_up_text" />
@@ -55,10 +56,11 @@
       android:layout_marginStart="45dp"
       android:layout_marginTop="28dp"
       android:layout_marginEnd="46dp"
-      android:backgroundTint="#E13CB0"
+      android:backgroundTint="@color/secondaryColor"
       android:hint="Password"
       android:inputType="textPassword"
-      android:textColorHint="#38B5E6"
+      android:textColor="@color/primaryTextColor"
+      android:textColorHint="@color/primaryTextColor"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/email_edittext" />
@@ -70,10 +72,11 @@
       android:layout_marginStart="45dp"
       android:layout_marginTop="36dp"
       android:layout_marginEnd="46dp"
-      android:backgroundTint="#E13CB0"
+      android:backgroundTint="@color/secondaryColor"
       android:hint="Confirm Password"
       android:inputType="textPassword"
-      android:textColorHint="#38B5E6"
+      android:textColor="@color/primaryTextColor"
+      android:textColorHint="@color/primaryTextColor"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/password_edittext" />
@@ -84,14 +87,16 @@
       android:layout_width="200dp"
       android:layout_height="wrap_content"
       android:layout_marginStart="106dp"
+      android:layout_marginTop="16dp"
       android:layout_marginEnd="106dp"
-      android:background="#E13CB0"
+      android:background="@color/secondaryColor"
       android:onClick="onClick"
       android:text="Sign Up"
+      android:textColor="@color/primaryTextColor"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
-      android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/radioGroup"/>
+      app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
   <TextView
       android:id="@+id/login_textview"
@@ -102,7 +107,7 @@
       android:layout_marginEnd="91dp"
       android:onClick="onClick"
       android:text="Already Have an account? Login"
-      android:textColor="#38B5E6"
+      android:textColor="@color/primaryTextColor"
       android:textSize="16sp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -120,14 +125,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="User"
-        android:buttonTint="@color/colorAccent"
-        android:textColor="@color/colorAccent"
+        android:buttonTint="@color/secondaryColor"
+        android:textColor="@color/primaryTextColor"
         android:onClick="onClick"/>
     <RadioButton android:id="@+id/radio2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:buttonTint="@color/colorAccent"
-        android:textColor="@color/colorAccent"
+        android:buttonTint="@color/secondaryColor"
+        android:textColor="@color/primaryTextColor"
         android:text="Coordinator"
         android:onClick="onClick"/>
   </RadioGroup>
