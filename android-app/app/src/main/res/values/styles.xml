@@ -29,7 +29,15 @@
     <item name="android:layout_height">50dp</item>
     <item name="android:background">@drawable/round_button</item>
     <item name="android:textColor">#fff</item>
+  </style>
 
+  <style name="CustomizeDialogButton" parent="Widget.AppCompat.Button.Borderless">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginStart">8dp</item>
+    <item name="android:layout_marginTop">16dp</item>
+    <item name="android:padding">8dp</item>
+    <item name="android:textSize">20sp</item>
   </style>
 
 </resources>
