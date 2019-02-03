@@ -1,28 +1,27 @@
 package fgcu.mangohacks2019
 
+import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.Snackbar
+import android.provider.MediaStore
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.util.EventLog
-
-import android.util.Log
 
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
-import com.apollographql.apollo.ApolloCall
-import com.apollographql.apollo.api.Response
-import com.apollographql.apollo.exception.ApolloException
-import fgcu.mangohacks2019.utils.EightBaseApolloClient
-import android.widget.EditText
+import android.view.Window
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import com.google.firebase.FirebaseApp
+import com.google.firebase.storage.FirebaseStorage
 import fgcu.mangohacks2019.adapters.RecyclerViewOnClick
 import fgcu.mangohacks2019.fragments.AttendEventFragment
 import fgcu.mangohacks2019.fragments.EditProfileFragment
@@ -32,16 +31,26 @@ import fgcu.mangohacks2019.fragments.SubscriptionsFragment
 import fgcu.mangohacks2019.models.Event
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
-import fgcu.mangohacks2019.LanguagePreferences
+import java.io.ByteArrayOutputStream
+import java.io.FileNotFoundException
+import java.io.InputStream
 
 class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, RecyclerViewOnClick {
+  val TAKE_PHOTO = 339
+  val CHOOSE_PHOTO = 432
+  lateinit var background : ImageView
+  lateinit var profileImageBitmap : Bitmap
+  private var storage: FirebaseStorage? = null
+  private var backgroundImageBitmap: Bitmap? = null
 
   override fun rowSelected(obj: Any) {
+
       intent = if(obj is Event)
         Intent(this,DetailedEventActivity::class.java)
       else
         Intent(this,DetailedCoordinatorActivity::class.java)
       startActivity(intent)
+
   }
 
   lateinit var fragment: Fragment
@@ -56,6 +65,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     supportActionBar?.setDisplayShowTitleEnabled(false)
     titleTextView = findViewById(R.id.toolbar_title)
     titleTextView.text = "My Events"
+
 
     fab.setOnClickListener { view ->
       intent = Intent(this, CreateEventActivity::class.java)
@@ -104,7 +114,6 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
       R.id.nav_near_events -> {
         fragment = NearEventFragment()
         supportFragmentManager.beginTransaction().replace(R.id.fragment,fragment,fragment.getTag()).commit()
-
       }
       R.id.nav_attend_events -> {
         fragment = AttendEventFragment()
@@ -136,7 +145,78 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
   }
 
-  fun showDialog(view: View){
+  fun showDialog(view: View) {
+    val dialog = Dialog(this)
+    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+    dialog.setCancelable(true)
+    dialog.setContentView(R.layout.customize_page_dialog)
+    val button1: Button = dialog.findViewById(R.id.take_photo_button)
+    val button2: Button = dialog.findViewById(R.id.choose_photo_button)
+    val cancelButton: Button = dialog.findViewById(R.id.cancel_button)
+    background = view as ImageView
 
+    button1.text = "Take Photo"
+    button2.text = "Choose Photo";
+
+    button1.setOnClickListener {
+      intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+      startActivityForResult(intent, TAKE_PHOTO);
+      dialog.dismiss()
+    }
+
+    button2.setOnClickListener {
+      openFileImages(this, CHOOSE_PHOTO);
+      dialog.dismiss()
+    }
+
+    cancelButton.setOnClickListener {
+      dialog.dismiss()
+    }
+
+    dialog.show()
+  }
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    if (resultCode == Activity.RESULT_OK) {
+      if (requestCode == TAKE_PHOTO) {
+        val extras = data!!.extras
+        profileImageBitmap = extras!!.get("data") as Bitmap
+        background.setImageBitmap(profileImageBitmap)
+      } else if (requestCode == CHOOSE_PHOTO) {
+        var inputStream: InputStream? = null
+        try {
+          inputStream = contentResolver.openInputStream(data!!.data!!)
+        } catch (e: FileNotFoundException) {
+          e.printStackTrace()
+        }
+        profileImageBitmap = BitmapFactory.decodeStream(inputStream)
+        background.setImageBitmap(profileImageBitmap)
+        uploadBackgroundImage()
+
+      }
+    }
+  }
+
+  private fun openFileImages(activity: Activity, requestCode: Int) {
+    val intent = Intent()
+    intent.type = "image/*"
+    intent.action = Intent.ACTION_GET_CONTENT
+    activity.startActivityForResult(Intent.createChooser(intent, "Select Picture"),
+        requestCode)
+  }
+
+  private fun uploadBackgroundImage() {
+    var backgroundStorageRef = storage?.getReference()?.child(String.format("%s/profile_image",
+        "were"))
+    val baos = ByteArrayOutputStream()
+    backgroundImageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+    val data = baos.toByteArray()
+
+    val uploadTask = backgroundStorageRef?.putBytes(data)
+    uploadTask?.addOnSuccessListener{
+      backgroundStorageRef?.downloadUrl?.addOnCompleteListener {
+        val backgroundUrl = it.result!!.toString()
+      }
+    }
   }
 }

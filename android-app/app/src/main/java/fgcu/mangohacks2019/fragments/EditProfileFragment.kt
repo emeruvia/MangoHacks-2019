@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import fgcu.mangohacks2019.HomePageActivity
 import fgcu.mangohacks2019.R
 import fgcu.mangohacks2019.models.Event
 
