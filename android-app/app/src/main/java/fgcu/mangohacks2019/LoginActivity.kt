@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.airbnb.lottie.LottieAnimationView
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
@@ -21,12 +22,14 @@ class LoginActivity : AppCompatActivity() {
   private lateinit var passwordEt: EditText
   private var email: String? = null
   private var password: String? = null
+  lateinit var lottieIv: LottieAnimationView
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
     emailEt = findViewById(R.id.email_edittext)
     passwordEt = findViewById(R.id.login_password_et)
+    lottieIv = findViewById(R.id.world)
   }
 
   fun onClick(view: View) {
