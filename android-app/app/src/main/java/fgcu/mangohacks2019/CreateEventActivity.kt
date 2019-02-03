@@ -61,7 +61,7 @@ class CreateEventActivity : AppCompatActivity() {
   fun createEvent(view: View) {
     Toast.makeText(this, "Create Event", Toast.LENGTH_SHORT)
         .show()
-    createEvent()
+//    createEvent()
   }
 
   fun showDialog(view: View) {
