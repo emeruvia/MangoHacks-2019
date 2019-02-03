@@ -11,13 +11,11 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
       android:theme="@style/AppTheme">
-    <activity android:name=".CreateEventActivity">
+    <activity android:name=".CreateEventActivity" android:parentActivityName=".HomePageActivity">
     </activity>
-    <activity android:name=".EditProfilePageActvity">
+    <activity android:name=".DetailedCoordinatorActivity" android:parentActivityName=".HomePageActivity">
     </activity>
-    <activity android:name=".DetailedCoordinatorActivity">
-    </activity>
-    <activity android:name=".DetailedEventActivity">
+    <activity android:name=".DetailedEventActivity" android:parentActivityName=".HomePageActivity">
     </activity>
     <activity
         android:name=".HomePageActivity"
