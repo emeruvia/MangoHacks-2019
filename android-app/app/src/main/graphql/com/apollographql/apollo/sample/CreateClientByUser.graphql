@@ -1,0 +1,13 @@
+mutation CreateClientByUser(
+  $email: String!
+  $password: String!
+){
+  clientCreate(data:{
+    email: $email
+    password: $password
+  }){
+    id
+    email
+    password
+  }
+}
