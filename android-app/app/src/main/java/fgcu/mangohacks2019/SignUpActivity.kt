@@ -23,7 +23,7 @@ class SignUpActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_sign_up)
-    emailEt = findViewById(R.id.email_edittext)
+    emailEt = findViewById(R.id.date_edittext)
     passwordEt = findViewById(R.id.password_edittext)
     confirmPasswordEt = findViewById(R.id.confirm_password_edittext)
   }
@@ -67,10 +67,10 @@ class SignUpActivity : AppCompatActivity() {
     )
         .enqueue(object : ApolloCall.Callback<CreateClientByUserMutation.Data>() {
           override fun onFailure(e: ApolloException) {
-//            this@SignUpActivity.runOnUiThread {
-//              Toast.makeText(applicationContext, "Failure to create account", Toast.LENGTH_SHORT)
-//                  .show()
-//            }
+            this@SignUpActivity.runOnUiThread {
+              Toast.makeText(applicationContext, "Failure to create account", Toast.LENGTH_SHORT)
+                  .show()
+            }
           }
 
           override fun onResponse(response: Response<Data>) {

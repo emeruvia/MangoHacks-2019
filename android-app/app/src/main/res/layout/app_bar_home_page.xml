@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/backgroundColor"
     tools:context=".HomePageActivity">
 
   <android.support.design.widget.AppBarLayout
@@ -27,7 +27,7 @@
           android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:text="Toolbar Title"
-          android:textColor="#FFFFFF"
+          android:textColor="@color/primaryTextColor"
           android:textSize="20sp" />
     </android.support.v7.widget.Toolbar>
 
@@ -41,7 +41,7 @@
       android:layout_height="wrap_content"
       android:layout_gravity="bottom|end"
       android:layout_margin="@dimen/fab_margin"
-      app:backgroundTint="#E13CB0"
+      app:backgroundTint="@color/secondaryColor"
       app:srcCompat="@android:drawable/ic_dialog_email" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".CreateEventActivity"
 >
 
@@ -19,7 +20,8 @@
         android:id="@+id/customize_background_imageview"
         android:layout_width="match_parent"
         android:layout_height="200sp"
-        android:background="@color/primaryColor"
+
+        android:background="@color/primaryLightColor"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,11 +33,12 @@
         android:layout_width="160dp"
         android:layout_height="32dp"
         android:layout_marginStart="24dp"
-        android:background="@drawable/white_round_button"
+        android:background="@color/secondaryColor"
         android:onClick="showDialog"
         android:text="Change Background"
         android:textAllCaps="false"
-        android:textColor="@color/primaryColor"
+
+        android:textColor="@color/primaryTextColor"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         style="?android:attr/buttonBarButtonStyle"
@@ -50,27 +53,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/change_background_button"
         android:singleLine="true"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/primaryTextColor"/>
 
     <EditText
-        android:id="@+id/email_edittext"
+        android:id="@+id/date_edittext"
         style="@style/CustomizePageEditText"
         android:hint="Date"
         android:inputType="date"
         app:layout_constraintTop_toBottomOf="@+id/name_edittext"
         android:singleLine="true"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"/>
+        app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/primaryTextColor"/>
 
     <EditText
         android:id="@+id/city_edittext"
         style="@style/CustomizePageEditText"
         android:hint="Address"
         android:inputType="textPostalAddress"
-        app:layout_constraintTop_toBottomOf="@+id/email_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/date_edittext"
         android:singleLine="true"
         android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/primaryTextColor"/>
 
     <EditText
         android:id="@+id/price_edittext"
@@ -80,7 +92,10 @@
         app:layout_constraintTop_toBottomOf="@+id/city_edittext"
         android:singleLine="true"
         android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/primaryTextColor"/>
 
     <EditText
         android:id="@+id/description_edittext"
@@ -94,7 +109,10 @@
         app:layout_constraintTop_toBottomOf="@+id/price_edittext"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/primaryTextColor"/>
 
     <Button
         app:layout_constraintTop_toBottomOf="@id/description_edittext"
@@ -105,6 +123,8 @@
         style="@style/LoginSignUpButton"
         android:text="Add Event"
         android:onClick="createEvent"
+        android:background="@color/secondaryColor"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"/>
 

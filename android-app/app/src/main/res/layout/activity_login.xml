@@ -36,7 +36,7 @@
       app:layout_constraintTop_toBottomOf="@+id/logo_imageview" />
 
   <EditText
-      android:id="@+id/password_edittext"
+      android:id="@+id/login_password_et"
       android:layout_width="320dp"
       android:layout_height="wrap_content"
       android:layout_marginStart="45dp"
@@ -64,7 +64,7 @@
       android:text="Login"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/password_edittext" />
+      app:layout_constraintTop_toBottomOf="@+id/login_password_et" />
 
 
   <TextView

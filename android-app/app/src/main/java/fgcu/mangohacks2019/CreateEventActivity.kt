@@ -8,13 +8,13 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.support.annotation.NonNull
 import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
@@ -28,11 +28,22 @@ class CreateEventActivity : AppCompatActivity() {
   private var storage: FirebaseStorage? = null
   private var backgroundImageBitmap: Bitmap? = null
 
+  private lateinit var eventTitle: EditText
+  private lateinit var dateEt: EditText
+  private lateinit var cityEt: EditText
+  private lateinit var priceEt: EditText
+  private lateinit var descriptionEt: EditText
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_create_event)
     background = findViewById(R.id.customize_background_imageview)
     storage = FirebaseStorage.getInstance()
+    eventTitle = findViewById(R.id.name_edittext)
+    dateEt = findViewById(R.id.date_edittext)
+    cityEt = findViewById(R.id.city_edittext)
+    priceEt = findViewById(R.id.price_edittext)
+    descriptionEt = findViewById(R.id.description_edittext)
   }
 
   fun onClick(view: View){
@@ -40,7 +51,8 @@ class CreateEventActivity : AppCompatActivity() {
   }
 
   fun createEvent(view: View) {
-
+    Toast.makeText(this, "Create Event", Toast.LENGTH_SHORT).show()
+//    val client: ApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
   }
 
   fun showDialog(view: View) {

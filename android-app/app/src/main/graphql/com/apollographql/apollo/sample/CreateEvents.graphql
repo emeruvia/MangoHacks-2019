@@ -1,18 +1,22 @@
-mutation CreateEvents(
+mutation CreateEvent(
+  $id: ID!
   $title: String
   $description: String
   $address: String
   $price: Float
   $date: Date
-  $image: String
 ){
   eventCreate(data:{
+    clients:{
+      connect:{
+        id: $id
+      }
+    }
     titleOfEvent: $title
     description: $description
     address: $address
     price: $price
     date: $date
-    image: $image
   }){
     id
     titleOfEvent
@@ -20,6 +24,5 @@ mutation CreateEvents(
     address
     price
     date
-    image
   }
 }
