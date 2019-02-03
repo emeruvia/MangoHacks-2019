@@ -13,9 +13,10 @@ import fgcu.mangohacks2019.adapters.RecyclerViewOnClick
 import fgcu.mangohacks2019.adapters.SimpleRecyclerViewAdapter
 import fgcu.mangohacks2019.models.Coordinator
 import fgcu.mangohacks2019.models.Event
+import fgcu.mangohacks2019.utils.EightBaseApolloClient
 import java.util.Date
 
-class AttendEventFragment : Fragment(){
+class AttendEventFragment : Fragment() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -35,26 +36,73 @@ class AttendEventFragment : Fragment(){
     recyclerView.isNestedScrollingEnabled = false
 
     list.add(
-        Event("Event", "12345 street florida, city state", Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"), "image", "some place where an event happens", Date(2312321), 23.1))
+        Event(
+            "Event", "12345 street florida, city state",
+            Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"),
+            "image", "some place where an event happens", Date(2312321), 23.1
+        )
+    )
     list.add(
-        Event("Event", "12345 street florida, city state", Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"), "image", "some place where an event happens", Date(2312321), 23.1))
+        Event(
+            "Event", "12345 street florida, city state",
+            Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"),
+            "image", "some place where an event happens", Date(2312321), 23.1
+        )
+    )
     list.add(
-        Event("Event", "12345 street florida, city state", Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"), "image", "some place where an event happens", Date(2312321), 23.1))
+        Event(
+            "Event", "12345 street florida, city state",
+            Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"),
+            "image", "some place where an event happens", Date(2312321), 23.1
+        )
+    )
     list.add(
-        Event("Event", "12345 street florida, city state", Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"), "image", "some place where an event happens", Date(2312321), 23.1))
+        Event(
+            "Event", "12345 street florida, city state",
+            Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"),
+            "image", "some place where an event happens", Date(2312321), 23.1
+        )
+    )
     list.add(
-        Event("Event", "12345 street florida, city state", Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"), "image", "some place where an event happens", Date(2312321), 23.1))
+        Event(
+            "Event", "12345 street florida, city state",
+            Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"),
+            "image", "some place where an event happens", Date(2312321), 23.1
+        )
+    )
     list.add(
-        Event("Event", "12345 street florida, city state", Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"), "image", "some place where an event happens", Date(2312321), 23.1))
+        Event(
+            "Event", "12345 street florida, city state",
+            Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"),
+            "image", "some place where an event happens", Date(2312321), 23.1
+        )
+    )
     list.add(
-        Event("Event", "12345 street florida, city state", Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"), "image", "some place where an event happens", Date(2312321), 23.1))
+        Event(
+            "Event", "12345 street florida, city state",
+            Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"),
+            "image", "some place where an event happens", Date(2312321), 23.1
+        )
+    )
     list.add(
-        Event("Event", "12345 street florida, city state", Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"), "image", "some place where an event happens", Date(2312321), 23.1))
+        Event(
+            "Event", "12345 street florida, city state",
+            Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"),
+            "image", "some place where an event happens", Date(2312321), 23.1
+        )
+    )
     list.add(
-        Event("Event", "12345 street florida, city state", Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"), "image", "some place where an event happens", Date(2312321), 23.1))
+        Event(
+            "Event", "12345 street florida, city state",
+            Coordinator("James Jamie", "image", "City", "j@emai.com", "123455", "123-123-1234"),
+            "image", "some place where an event happens", Date(2312321), 23.1
+        )
+    )
 
-    recyclerView.adapter = SimpleRecyclerViewAdapter(list,
-        R.layout.event_item, activity as RecyclerViewOnClick)
+    recyclerView.adapter = SimpleRecyclerViewAdapter(
+        list,
+        R.layout.event_item, activity as RecyclerViewOnClick
+    )
     return rootView
   }
 }

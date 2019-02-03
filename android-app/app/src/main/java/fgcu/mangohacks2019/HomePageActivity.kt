@@ -20,10 +20,6 @@ import android.widget.Toast
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
-import com.apollographql.apollo.sample.GetEventUsersQuery
-import com.apollographql.apollo.sample.GetEventUsersQuery.EventsList
-import com.apollographql.apollo.sample.TestListQuery
-import com.apollographql.apollo.sample.TestListQuery.Data
 import fgcu.mangohacks2019.utils.EightBaseApolloClient
 import android.widget.EditText
 import android.widget.TextView
@@ -60,9 +56,6 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     supportActionBar?.setDisplayShowTitleEnabled(false)
     titleTextView = findViewById(R.id.toolbar_title)
     titleTextView.text = "My Events"
-
-
-    getPost()
 
     fab.setOnClickListener { view ->
       intent = Intent(this, CreateEventActivity::class.java)
@@ -138,39 +131,6 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     return true
   }
 
-  private fun getPost() {
-    val eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
-    eightBaseApolloClient.query(
-        TestListQuery.builder().build()
-    )
-        .enqueue(object : ApolloCall.Callback<TestListQuery.Data>() {
-          override fun onResponse(response: Response<TestListQuery.Data>) {
-            Log.d("onResponse", response.data()!!.testsList().items().toString())
-            this@HomePageActivity.runOnUiThread {
-              Toast.makeText(applicationContext, "Response works", Toast.LENGTH_SHORT)
-                  .show()
-            }
-          }
-
-          override fun onFailure(e: ApolloException) {
-            Log.d("onFailure", "Trash")
-          }
-        })
-    eightBaseApolloClient.query(
-        GetEventUsersQuery.builder().build()
-    )
-        .enqueue(object : ApolloCall.Callback<GetEventUsersQuery.Data>() {
-          override fun onFailure(e: ApolloException) {
-            Log.d("onFailure", "Trash coming from getevent user stuff")
-          }
-
-          override fun onResponse(response: Response<GetEventUsersQuery.Data>) {
-            Log.d("onResponse", response.data()!!.eventsList().items()[0].toString())
-            Log.d("onResponse", response.data()!!.eventUsersList().items()[0].toString())
-          }
-
-        })
-  }
 
   fun updateProfile(view: View){
 

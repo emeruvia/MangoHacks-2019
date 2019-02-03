@@ -1,0 +1,20 @@
+query GetEventsQuery{
+  eventsList{
+    count
+    items{
+      id
+			coordinators{
+        client{
+          id
+          firstName
+          lastName
+          email
+          baseCity
+        }
+      }
+      titleOfEvent
+      description
+      address
+    }
+  }
+}
