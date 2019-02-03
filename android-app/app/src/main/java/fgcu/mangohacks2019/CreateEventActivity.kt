@@ -8,24 +8,14 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.support.annotation.NonNull
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
-import com.apollographql.apollo.ApolloClient
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.FirebaseApp
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
-import fgcu.mangohacks2019.utils.EightBaseApolloClient
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 import java.io.InputStream
@@ -48,7 +38,6 @@ class CreateEventActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_create_event)
     background = findViewById(R.id.customize_background_imageview)
-    FirebaseApp.initializeApp(this)
     storage = FirebaseStorage.getInstance()
     eventTitle = findViewById(R.id.name_edittext)
     dateEt = findViewById(R.id.date_edittext)
@@ -68,6 +57,7 @@ class CreateEventActivity : AppCompatActivity() {
 
   fun showDialog(view: View) {
     val dialog = Dialog(this)
+    Log.d("URL:", "Started this")
     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
     dialog.setCancelable(true)
     dialog.setContentView(R.layout.customize_page_dialog)
@@ -97,6 +87,7 @@ class CreateEventActivity : AppCompatActivity() {
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    Log.d("URL:", "Started this 2")
     if (resultCode == Activity.RESULT_OK) {
       if (requestCode == TAKE_PHOTO) {
         val extras = data!!.extras
@@ -118,6 +109,7 @@ class CreateEventActivity : AppCompatActivity() {
   }
 
   private fun openFileImages(activity: Activity, requestCode: Int) {
+    Log.d("URL:", "Started this 3")
     val intent = Intent()
     intent.type = "image/*"
     intent.action = Intent.ACTION_GET_CONTENT
@@ -126,8 +118,9 @@ class CreateEventActivity : AppCompatActivity() {
   }
 
   private fun uploadBackgroundImage() {
+    Log.d("URL:", "Started this")
    var backgroundStorageRef = storage?.getReference()?.child(String.format("%s/background_image",
-        1))
+        17557657))
     val baos = ByteArrayOutputStream()
      backgroundImageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
     val data = baos.toByteArray()
@@ -135,7 +128,10 @@ class CreateEventActivity : AppCompatActivity() {
     val uploadTask = backgroundStorageRef?.putBytes(data)
     uploadTask?.addOnSuccessListener{
       backgroundStorageRef?.downloadUrl?.addOnCompleteListener {
-        val backgroundUrl = it.result!!.toString()
+        val backgroundUrl = it.result!!.toString();
+        Log.d("URL:", backgroundUrl)
+      }?.addOnFailureListener{
+        Log.d("Error:", it.message)
       }
     }
   }

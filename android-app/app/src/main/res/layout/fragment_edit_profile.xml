@@ -60,7 +60,6 @@
       app:layout_constraintStart_toEndOf="@+id/profile_imageview_circle"
       />
 
-
   <Button
       android:id="@+id/change_background_button"
       android:layout_width="160dp"
@@ -80,8 +79,7 @@
       style="?android:attr/buttonBarButtonStyle"
       />
 
-
-  <EditText
+ <EditText
       android:id="@+id/name_edittext"
       android:layout_marginStart="16dp"
       android:backgroundTint="@color/secondaryColor"
@@ -90,9 +88,11 @@
       android:textColor="@color/primaryTextColor"
       android:textColorHint="@color/primaryTextColor"
       app:layout_constraintStart_toStartOf="parent"
+
       app:layout_constraintTop_toBottomOf="@+id/change_background_button"
       style="@style/CustomizePageEditText"
       />
+
 
   <EditText
       android:id="@+id/date_edittext"

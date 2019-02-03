@@ -8,9 +8,7 @@ import android.preference.PreferenceFragment
 
 class LanguagePreferences: PreferenceActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-
         fragmentManager.beginTransaction().replace(android.R.id.content, MyPreferenceFragment()).commit()
 
     }
