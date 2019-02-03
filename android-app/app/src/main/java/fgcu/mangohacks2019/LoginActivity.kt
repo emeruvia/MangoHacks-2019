@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+
+import com.google.firebase.auth.FirebaseAuth
+
 import android.widget.EditText
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
@@ -16,7 +19,9 @@ import com.apollographql.apollo.sample.LoginQuery
 import com.apollographql.apollo.sample.LoginQuery.Data
 import fgcu.mangohacks2019.utils.EightBaseApolloClient
 
+
 class LoginActivity : AppCompatActivity() {
+  private lateinit var auth: FirebaseAuth
 
   private lateinit var emailEt: EditText
   private lateinit var passwordEt: EditText
