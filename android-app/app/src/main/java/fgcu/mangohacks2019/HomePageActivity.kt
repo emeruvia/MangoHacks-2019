@@ -1,5 +1,6 @@
 package fgcu.mangohacks2019
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -10,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
+import fgcu.mangohacks2019.LanguagePreferences
 
 class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,7 +53,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
     when (item.itemId) {
-      R.id.action_settings -> return true
+      R.id.action_settings ->{ intent = Intent(this,LanguagePreferences::class.java) ; startActivity(intent); return true;}
       else -> return super.onOptionsItemSelected(item)
     }
   }
