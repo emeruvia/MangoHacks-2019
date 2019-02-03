@@ -1,20 +1,23 @@
-query GetEventsQuery{
+query GetEventList{
   eventsList{
     count
     items{
       id
-			coordinators{
+      titleOfEvent
+      description
+      address
+      date
+      price
+      image
+      coordinators{
         client{
-          id
           firstName
           lastName
           email
           baseCity
+          phoneNumber
         }
       }
-      titleOfEvent
-      description
-      address
     }
   }
 }
