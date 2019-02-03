@@ -22,6 +22,13 @@ class SignUpActivity : AppCompatActivity() {
         val intent = Intent(this,LoginActivity::class.java)
         startActivity(intent)
       }
+      R.id.radio1 -> {
+
+      }
+      R.id.radio2-> {
+
+      }
     }
   }
+
 }

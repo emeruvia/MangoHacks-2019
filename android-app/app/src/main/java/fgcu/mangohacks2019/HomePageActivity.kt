@@ -15,14 +15,11 @@ import android.util.Log
 
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
-import com.apollographql.apollo.sample.GetEventUsersQuery
-import com.apollographql.apollo.sample.GetEventUsersQuery.EventsList
-import com.apollographql.apollo.sample.TestListQuery
-import com.apollographql.apollo.sample.TestListQuery.Data
 import fgcu.mangohacks2019.utils.EightBaseApolloClient
 import android.widget.EditText
 import android.widget.TextView
@@ -60,13 +57,9 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     titleTextView = findViewById(R.id.toolbar_title)
     titleTextView.text = "My Events"
 
-
-    getPost()
-
     fab.setOnClickListener { view ->
-      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-          .setAction("Action", null)
-          .show()
+      intent = Intent(this, CreateEventActivity::class.java)
+      startActivity(intent)
     }
 
     val toggle = ActionBarDrawerToggle(
@@ -77,6 +70,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     toggle.syncState()
 
     nav_view.setNavigationItemSelectedListener(this)
+    nav_view.itemIconTintList = null
   }
 
   override fun onBackPressed() {
@@ -137,37 +131,12 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     return true
   }
 
-  private fun getPost() {
-    val eightBaseApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
-    eightBaseApolloClient.query(
-        TestListQuery.builder().build()
-    )
-        .enqueue(object : ApolloCall.Callback<TestListQuery.Data>() {
-          override fun onResponse(response: Response<TestListQuery.Data>) {
-            Log.d("onResponse", response.data()!!.testsList().items().toString())
-            this@HomePageActivity.runOnUiThread {
-              Toast.makeText(applicationContext, "Response works", Toast.LENGTH_SHORT)
-                  .show()
-            }
-          }
 
-          override fun onFailure(e: ApolloException) {
-            Log.d("onFailure", "Trash")
-          }
-        })
-    eightBaseApolloClient.query(
-        GetEventUsersQuery.builder().build()
-    )
-        .enqueue(object : ApolloCall.Callback<GetEventUsersQuery.Data>() {
-          override fun onFailure(e: ApolloException) {
-            Log.d("onFailure", "Trash coming from getevent user stuff")
-          }
+  fun updateProfile(view: View){
 
-          override fun onResponse(response: Response<GetEventUsersQuery.Data>) {
-            Log.d("onResponse", response.data()!!.eventsList().items()[0].toString())
-            Log.d("onResponse", response.data()!!.eventUsersList().items()[0].toString())
-          }
+  }
 
-        })
+  fun showDialog(view: View){
+
   }
 }

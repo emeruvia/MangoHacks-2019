@@ -1,0 +1,25 @@
+mutation CreateEventMutation(
+  $coordinatorId: ID
+  $title: String!
+  $description: String!
+  $address: String!
+  $price: Float
+){
+  eventCreate(data:{
+    coordinators:{
+      connect:{
+        id: $coordinatorId
+      }
+    }
+    titleOfEvent: $title
+    description: $description
+    address: $address
+    price: $price
+  }){
+    id
+    titleOfEvent
+    description
+    address
+    price
+  }
+}
