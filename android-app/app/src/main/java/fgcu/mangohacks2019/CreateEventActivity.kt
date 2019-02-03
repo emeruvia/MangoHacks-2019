@@ -16,7 +16,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import com.apollographql.apollo.ApolloCall
+import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.api.Response
+import com.apollographql.apollo.exception.ApolloException
+import com.apollographql.apollo.sample.CreateEventMutation
+import com.apollographql.apollo.sample.CreateEventMutation.Data
 import com.google.firebase.storage.FirebaseStorage
+import fgcu.mangohacks2019.utils.EightBaseApolloClient
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 import java.io.InputStream
@@ -24,8 +31,8 @@ import java.io.InputStream
 class CreateEventActivity : AppCompatActivity() {
   val TAKE_PHOTO = 333
   val CHOOSE_PHOTO = 232
-  lateinit var background : ImageView
-  lateinit var profileImageBitmap : Bitmap
+  lateinit var background: ImageView
+  lateinit var profileImageBitmap: Bitmap
   private var storage: FirebaseStorage? = null
   private var backgroundImageBitmap: Bitmap? = null
 
@@ -47,13 +54,14 @@ class CreateEventActivity : AppCompatActivity() {
     descriptionEt = findViewById(R.id.description_edittext)
   }
 
-  fun onClick(view: View){
+  fun onClick(view: View) {
 
   }
 
   fun createEvent(view: View) {
-    Toast.makeText(this, "Create Event", Toast.LENGTH_SHORT).show()
-//    val client: ApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
+    Toast.makeText(this, "Create Event", Toast.LENGTH_SHORT)
+        .show()
+//    createEvent()
   }
 
   fun showDialog(view: View) {
@@ -87,7 +95,11 @@ class CreateEventActivity : AppCompatActivity() {
     dialog.show()
   }
 
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+  override fun onActivityResult(
+    requestCode: Int,
+    resultCode: Int,
+    data: Intent?
+  ) {
     Log.d("URL:", "Started this 2")
     if (resultCode == Activity.RESULT_OK) {
       if (requestCode == TAKE_PHOTO) {
@@ -101,44 +113,72 @@ class CreateEventActivity : AppCompatActivity() {
         } catch (e: FileNotFoundException) {
           e.printStackTrace()
         }
-          profileImageBitmap = BitmapFactory.decodeStream(inputStream)
-          background.setImageBitmap(profileImageBitmap)
+        profileImageBitmap = BitmapFactory.decodeStream(inputStream)
+        background.setImageBitmap(profileImageBitmap)
         uploadBackgroundImage()
 
       }
     }
   }
 
-  private fun openFileImages(activity: Activity, requestCode: Int) {
+  private fun openFileImages(
+    activity: Activity,
+    requestCode: Int
+  ) {
     Log.d("URL:", "Started this 3")
     val intent = Intent()
     intent.type = "image/*"
     intent.action = Intent.ACTION_GET_CONTENT
-    activity.startActivityForResult(Intent.createChooser(intent, "Select Picture"),
-        requestCode)
+    activity.startActivityForResult(
+        Intent.createChooser(intent, "Select Picture"),
+        requestCode
+    )
   }
 
   private fun uploadBackgroundImage() {
     Log.d("URL:", "Started this")
-   var backgroundStorageRef = storage?.getReference()?.child(String.format("%s/background_image",
-        17557657))
+    var backgroundStorageRef = storage?.getReference()
+        ?.child(
+            String.format(
+                "%s/background_image",
+                17557657
+            )
+        )
     val baos = ByteArrayOutputStream()
-     backgroundImageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+    backgroundImageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
     val data = baos.toByteArray()
 
     val uploadTask = backgroundStorageRef?.putBytes(data)
-    uploadTask?.addOnSuccessListener{
+    uploadTask?.addOnSuccessListener {
       backgroundStorageRef?.downloadUrl?.addOnCompleteListener {
         val backgroundUrl = it.result!!.toString();
         Log.d("URL:", backgroundUrl)
-      }?.addOnFailureListener{
-        Log.d("Error:", it.message)
       }
+          ?.addOnFailureListener {
+            Log.d("Error:", it.message)
+          }
     }
   }
 
-  private fun createEvent(){
+  private fun createEvent() {
+    val client: ApolloClient = EightBaseApolloClient().getEightBaseApolloClient()
+    client.mutate(
+        CreateEventMutation.builder()
+            .id("cjroqjfmp02wt01quob8o2cor")
+            .title(eventTitle.text.toString())
+            .description(descriptionEt.text.toString())
+            .address(cityEt.text.toString())
+            .date(dateEt.text.toString())
+            .build()
+    ).enqueue(object : ApolloCall.Callback<CreateEventMutation.Data>(){
+      override fun onFailure(e: ApolloException) {
+        Log.d("onFailure", e.printStackTrace().toString())
+      }
 
+      override fun onResponse(response: Response<Data>) {
+
+      }
+    })
   }
 }
 
