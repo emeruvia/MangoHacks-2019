@@ -1,9 +1,0 @@
-query TestListQuery {
- 	testsList{
-     items{
-       id
-       works
-       state
-     }
-   }
- }

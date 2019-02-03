@@ -1,0 +1,22 @@
+mutation CreateClientMutation(
+  $email: String!
+  $password: String!
+  $firstName: String
+  $lastName: String
+	$baseCity: String
+){
+	clientCreate(data:{
+    email: $email
+    password: $password
+    firstName: $firstName
+		lastName: $lastName
+    baseCity: $baseCity
+  }){
+    id
+    email
+    password
+    firstName
+    lastName
+    baseCity
+  }
+}
