@@ -4,6 +4,7 @@ query LoginQuery(
   client(email: $email){
     id
     email
+    password
     firstName
     lastName
     baseCity
