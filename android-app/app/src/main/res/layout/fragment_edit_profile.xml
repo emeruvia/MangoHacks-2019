@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    >
 
   <ImageView
       android:id="@+id/customize_background_imageview"
       android:layout_width="match_parent"
       android:layout_height="200sp"
-      android:background="@color/primaryColor"
+
+      android:background="@color/primaryLightColor"
       android:scaleType="centerCrop"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-  />
+      />
 
   <android.support.v7.widget.CardView
       android:id="@+id/profile_imageview_circle"
       android:layout_width="100dp"
       android:layout_height="100dp"
-      android:elevation="4dp"
-      app:cardCornerRadius="50dp"
+      android:layout_centerHorizontal="true"
       android:layout_marginEnd="8dp"
       android:layout_marginTop="32dp"
-      android:layout_centerHorizontal="true"
+      android:elevation="4dp"
+      app:cardCornerRadius="50dp"
       app:layout_constraintBottom_toBottomOf="@+id/customize_background_imageview"
       app:layout_constraintEnd_toEndOf="@+id/customize_background_imageview"
       app:layout_constraintStart_toStartOf="@+id/customize_background_imageview"
-      app:layout_constraintTop_toTopOf="@+id/customize_background_imageview">
+      app:layout_constraintTop_toTopOf="@+id/customize_background_imageview"
+      >
 
     <ImageView
         android:id="@+id/profile_imageview"
@@ -37,7 +41,7 @@
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:contentDescription="@null"
-    />
+        />
 
   </android.support.v7.widget.CardView>
 
@@ -47,13 +51,14 @@
       android:layout_height="wrap_content"
       android:layout_below="@+id/profile_imageview_circle"
       android:layout_margin="8dp"
-      android:layout_toEndOf="@+id/profile_imageview_circle"
-      android:background="@drawable/ic_menu_camera"
-      android:onClick="showDialog"
-      app:layout_constraintStart_toEndOf="@+id/profile_imageview_circle"
       android:layout_marginBottom="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_toEndOf="@+id/profile_imageview_circle"
+      android:background="@color/secondaryColor"
+      android:onClick="showDialog"
       app:layout_constraintBottom_toBottomOf="@+id/profile_imageview_circle"
-      android:layout_marginStart="8dp"/>
+      app:layout_constraintStart_toEndOf="@+id/profile_imageview_circle"
+      />
 
 
   <Button
@@ -61,66 +66,89 @@
       android:layout_width="160dp"
       android:layout_height="32dp"
       android:layout_marginStart="24dp"
-      android:background="@drawable/white_round_button"
+      android:background="@color/secondaryColor"
       android:onClick="showDialog"
       android:text="Change Background"
       android:textAllCaps="false"
-      android:textColor="@color/primaryColor"
+
+      android:textColor="@color/primaryTextColor"
+
       android:textSize="16sp"
-      app:layout_constraintStart_toStartOf="parent"
-      style="?android:attr/buttonBarButtonStyle"
       app:layout_constraintBottom_toBottomOf="@+id/customize_background_imageview"
-      app:layout_constraintTop_toBottomOf="@+id/customize_background_imageview"/>
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/customize_background_imageview"
+      style="?android:attr/buttonBarButtonStyle"
+      />
 
 
   <EditText
       android:id="@+id/name_edittext"
-      style="@style/CustomizePageEditText"
+      android:layout_marginStart="16dp"
+      android:backgroundTint="@color/secondaryColor"
       android:hint="Name"
+      android:singleLine="true"
+      android:textColor="@color/primaryTextColor"
+      android:textColorHint="@color/primaryTextColor"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/change_background_button"
-      android:singleLine="true"
-      android:layout_marginStart="16dp"/>
+      style="@style/CustomizePageEditText"
+      />
 
   <EditText
-      android:id="@+id/email_edittext"
-      style="@style/CustomizePageEditText"
-      android:hint="Email"
-      app:layout_constraintTop_toBottomOf="@+id/name_edittext"
-      android:singleLine="true"
+      android:id="@+id/date_edittext"
+      android:layout_marginStart="16dp"
       android:layout_marginTop="16dp"
-      app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"/>
+      android:backgroundTint="@color/secondaryColor"
+      android:hint="Email"
+      android:singleLine="true"
+      android:textColor="@color/primaryTextColor"
+      android:textColorHint="@color/primaryTextColor"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/name_edittext"
+      style="@style/CustomizePageEditText"
+      />
 
   <EditText
       android:id="@+id/phone_edittext"
-      style="@style/CustomizePageEditText"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:backgroundTint="@color/secondaryColor"
       android:hint="Phone"
-      app:layout_constraintTop_toBottomOf="@+id/email_edittext"
       android:singleLine="true"
-      android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
-      android:layout_marginStart="16dp"/>
+      android:textColor="@color/primaryTextColor"
+      android:textColorHint="@color/primaryTextColor"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/date_edittext"
+      style="@style/CustomizePageEditText"
+      />
 
   <EditText
       android:id="@+id/city_edittext"
-      style="@style/CustomizePageEditText"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:backgroundTint="@color/secondaryColor"
       android:hint="City"
-      app:layout_constraintTop_toBottomOf="@+id/phone_edittext"
       android:singleLine="true"
-      android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
-      android:layout_marginStart="16dp"/>
+      android:textColor="@color/primaryTextColor"
+      android:textColorHint="@color/primaryTextColor"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/phone_edittext"
+      style="@style/CustomizePageEditText"
+      />
 
   <Button
-      app:layout_constraintTop_toBottomOf="@id/city_edittext"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
       android:id="@+id/update_profile_button"
       android:layout_marginTop="24dp"
-      style="@style/LoginSignUpButton"
-      android:text="Update Profile"
+      android:background="@color/secondaryColor"
       android:onClick="updateProfile"
-      app:layout_constraintHorizontal_bias="0.498"/>
-
-
+      android:text="Update Profile"
+      android:textColor="@color/primaryTextColor"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/city_edittext"
+      style="@style/LoginSignUpButton"
+      />
 
 </android.support.constraint.ConstraintLayout>
 

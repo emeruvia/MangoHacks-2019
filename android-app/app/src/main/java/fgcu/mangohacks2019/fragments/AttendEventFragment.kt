@@ -13,7 +13,6 @@ import fgcu.mangohacks2019.adapters.RecyclerViewOnClick
 import fgcu.mangohacks2019.adapters.SimpleRecyclerViewAdapter
 import fgcu.mangohacks2019.models.Coordinator
 import fgcu.mangohacks2019.models.Event
-import fgcu.mangohacks2019.utils.EightBaseApolloClient
 import java.util.Date
 
 class AttendEventFragment : Fragment() {
