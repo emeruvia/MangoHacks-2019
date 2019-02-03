@@ -5,80 +5,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
 
-  <ImageView
-      android:id="@+id/logo_imageview"
-      android:layout_width="200dp"
-      android:layout_height="200dp"
-      android:layout_marginStart="106dp"
-      android:layout_marginTop="84dp"
-      android:layout_marginEnd="106dp"
-      android:background="@color/primaryColor"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/world"
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/world"
+        tools:ignore="MissingConstraints" />
 
-  <EditText
-      android:id="@+id/email_edittext"
-      android:layout_width="320dp"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="45dp"
-      android:layout_marginTop="32dp"
-      android:layout_marginEnd="46dp"
-      android:backgroundTint="@color/secondaryColor"
-      android:hint="Email"
-      android:inputType="textEmailAddress"
-      android:textColor="@color/primaryTextColor"
-      android:textColorHint="@color/primaryTextColor"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/logo_imageview" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="EVENTOS"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        android:textColor="@color/primaryTextColor"
+        android:id="@+id/companyname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/world"/>
 
-  <EditText
-      android:id="@+id/password_edittext"
-      android:layout_width="320dp"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="45dp"
-      android:layout_marginTop="32dp"
-      android:layout_marginEnd="46dp"
-      android:backgroundTint="@color/secondaryColor"
-      android:hint="Password"
-      android:inputType="textPassword"
-      android:textColor="@color/primaryTextColor"
-      android:textColorHint="@color/primaryTextColor"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/email_edittext" />
+    <EditText
+        android:id="@+id/email_edittext"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/secondaryColor"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/companyname" />
 
-  <Button
-      android:id="@+id/login_button"
-      android:layout_width="200dp"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="106dp"
-      android:layout_marginTop="32dp"
-      android:layout_marginEnd="106dp"
-      android:background="@color/secondaryColor"
-      android:textColor="@color/primaryTextColor"
-      android:onClick="onClick"
-      android:text="Login"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/password_edittext" />
+    <EditText
+        android:id="@+id/password_edittext"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="46dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_edittext" />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="106dp"
+        android:background="@color/secondaryColor"
+        android:onClick="onClick"
+        android:text="Login"
+        android:textColor="@color/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_edittext" />
 
 
-  <TextView
-      android:id="@+id/sign_up_textview"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="92dp"
-      android:layout_marginTop="8dp"
-      android:layout_marginEnd="93dp"
-      android:onClick="onClick"
-      android:text="Don't have an account? Sign Up"
-      android:textColor="@color/primaryTextColor"
-      android:textSize="16sp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/login_button" />
+    <TextView
+        android:id="@+id/sign_up_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="93dp"
+        android:onClick="onClick"
+        android:text="Don't have an account? Sign Up"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_button" />
 </android.support.constraint.ConstraintLayout>
